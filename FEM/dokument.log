@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.8)  5 JAN 2015 11:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.8)  5 JAN 2015 14:22
 entering extended mode
 **dokument.tex
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\dokument.tex
@@ -1644,7 +1644,9 @@ Package glossaries Info: Writing glossary file dokument.acn on input line 8.
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/titel.aux
 )
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/Aufgabens
-tellung.aux))
+tellung.aux)
+(C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/grund.aux
+))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
@@ -1852,7 +1854,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/titel.tex
-<Bilder/EAHJena.png, id=34, 524.4393pt x 112.9821pt>
+<Bilder/EAHJena.png, id=38, 524.4393pt x 112.9821pt>
 File: Bilder/EAHJena.png Graphic file (type png)
  <use Bilder/EAHJena.png>
 Package pdftex.def Info: Bilder/EAHJena.png used on input line 14.
@@ -1913,13 +1915,6 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<bilder/sot23footprint.pdf, id=63, 372.199pt x 237.31854pt>
-File: bilder/sot23footprint.pdf Graphic file (type pdf)
-
-<use bilder/sot23footprint.pdf>
-Package pdftex.def Info: bilder/sot23footprint.pdf used on input line 26.
-(pdftex.def)             Requested size: 341.43437pt x 217.7056pt.
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 []|[]
  []
@@ -1933,15 +1928,80 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 
-]) [2 <C:/Users/Henry.homelande/Documents/GitHub/Dokumenationen/FEM/bilder/sot2
-3footprint.pdf>]
+] <bilder/sot23footprint.pdf, id=76, 372.199pt x 237.31854pt>
+File: bilder/sot23footprint.pdf Graphic file (type pdf)
+
+<use bilder/sot23footprint.pdf>
+Package pdftex.def Info: bilder/sot23footprint.pdf used on input line 27.
+(pdftex.def)             Requested size: 341.43437pt x 217.7056pt.
+
+<bilder/smd1206.pdf, id=77, 1493.58pt x 1313.70805pt>
+File: bilder/smd1206.pdf Graphic file (type pdf)
+ <use bilder/smd1206.pdf>
+Package pdftex.def Info: bilder/smd1206.pdf used on input line 35.
+(pdftex.def)             Requested size: 241.9889pt x 212.8436pt.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 37.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 37.
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[][]$\T1/lmtt/m/n/10.95 http : / / www . siongboon . com / projects / 2005-[]09
+-[]07 _$
+ []
+
+) [2 <C:/Users/Henry.homelande/Documents/GitHub/Dokumenationen/FEM/bilder/sot23
+footprint.pdf> <C:/Users/Henry.homelande/Documents/GitHub/Dokumenationen/FEM/bi
+lder/smd1206.pdf
+
+pdfTeX warning: pdflatex.exe (file C:/Users/Henry.homelande/Documents/GitHub/Do
+kumenationen/FEM/bilder/smd1206.pdf): PDF inclusion: multiple pdfs with page gr
+oup included in a single page
+>]
+(C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/grund.tex
+Kapitel 2.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]|[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]|[]
+ []
+
+[3
+
+
+
+
+]
 No file dokument.bbl.
 Package tocbasic Info: character protrusion at lof deactivated on input line 87
 .
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\dokument.lof
-Overfull \hbox (9.30992pt too wide) in paragraph at lines 3--3
- [][] [][][]\T1/lmr/m/n/12 (-20) Transistor- Di-men-sio-nen als SOT23 Ge-häu-se
-s, Quel-le: NXP - PDTC114E 
+Overfull \hbox (9.49399pt too wide) in paragraph at lines 3--3
+ [][] [][][]\T1/lmr/m/n/12 (-20) Transistor - Re-flow-foot-print SOT23 Ge-häu-s
+es, Quel-le: NXP - PDTC114E 
+ []
+
+
+Overfull \hbox (7.27046pt too wide) in paragraph at lines 4--4
+ [][] [][][]\T1/lmr/m/n/12 (-20) Widerstand - Di-men-sio-nen SMD 1206, Quel-le:
+ [][]$\T1/lmtt/m/n/12 http : / / www . siongboon .$ 
+ []
+
+
+Overfull \hbox (19.3063pt too wide) in paragraph at lines 4--4
+ $\T1/lmtt/m/n/12 com / projects / 2005-[]09-[]07 _ home _ pcb _ fabrication / 
+footprint / 1206 .$ 
  []
 
 )
@@ -1975,30 +2035,34 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/titel.aux
 )
 (C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/Aufgabens
-tellung.aux))
+tellung.aux)
+(C:\Users\Henry.homelande\Documents\GitHub\Dokumenationen\FEM\kapitel/grund.aux
+))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 111.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 111.
 Package rerunfilecheck Info: File `dokument.out' has not changed.
-(rerunfilecheck)             Checksum: 177B94171010CEC1F53A602EB08ED495;370.
+(rerunfilecheck)             Checksum: 538504F822B8E537CF0BE7BCE99F1F07;452.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
  ) 
 Here is how much of TeX's memory you used:
- 45029 strings out of 493921
- 991201 string characters out of 3147252
- 1231062 words of memory out of 3000000
- 47468 multiletter control sequences out of 15000+200000
- 57458 words of font info for 67 fonts, out of 3000000 for 9000
+ 45121 strings out of 493921
+ 993063 string characters out of 3147252
+ 1230062 words of memory out of 3000000
+ 47531 multiletter control sequences out of 15000+200000
+ 65592 words of font info for 81 fonts, out of 3000000 for 9000
  842 hyphenation exceptions out of 8191
- 78i,12n,114p,10457b,820s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 78i,12n,114p,10457b,790s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
 r10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on dokument.pdf (7 pages, 248382 bytes).
+9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.p
+fb>
+Output written on dokument.pdf (8 pages, 347625 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 19023 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 24668 words of extra memory for PDF output out of 24883 (max. 10000000)
 

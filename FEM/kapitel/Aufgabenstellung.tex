@@ -5,13 +5,13 @@ Die Mäuse und Ratten werden in Käfigen gehalten, um Rückschlüsse auf den medizin
 Ziel dieser Belegarbeit ist es, ein thermisches Modell zu erstellen, welches die infrarot Aufnahme einer Maus in mehreren Pixel darstellt.
 
 \section{Beleg - Spezifikation}
-Es wird für die erstellten Modelle eine statisch thermische Simulation durchgeführt. Eine Optimierung hinsichtlich der geometrischen Anordnung, sowie ein Vergleich der bisherigen Ergebnisse in Bezug auf gegenseitige Beeinflussung, zeitliche Erwärmung und Abkühlung. Daraufhin ist mit dem besten Ergebnis eine Simulation durchzuführen die den zeitlichen Verlauf von Verschiebungseffekten sichtbar macht. 
+Es wird für die erstellten Modelle eine statisch thermische Simulation durchgeführt. Eine Optimierung hinsichtlich der geometrischen Anordnung, sowie ein Vergleich der bisherigen Ergebnisse in Bezug auf gegenseitige Beeinflussung, zeitliche Erwärmung und Abkühlung. Daraufhin ist mit dem besten Ergebnis eine Simulation durchzuführen, die den zeitlichen Verlauf von Verschiebungseffekten sichtbar macht.
 \begin{table}[bh]
 	\centering
 	\caption{Beleg - Spezifikation}
 	\begin{tabular}{l p{9cm} } 
 			\rowcolor[gray]{.8}	 Leiterplatte (LP):& 50x50 mm, 7x7 Bauelemente, 2 Lagig (Toplayer Bauelemente, Bottomlayer Leiterbahnen)\\
-			Anordung& in der Mitte der LP 3x3 Pixel mit gleicher Verlustleistung (außer das mittlere Element) 	  					\\	
+			Anordung& in der Mitte der LP 3x3 Pixel mit gleicher Verlustleistung (außer das mittlere Element), äußere Transistorring mit maximaler Verlustleistung					\\	
 			\rowcolor[gray]{.8}Ausführung: & jeweils mit Transistoren SMD (SOT23) und SMD Widerständen (1206)\\
 			Verlustleistungen:& 50 mW, 100 mW, 150 mW 
 		%Feld&\multicolumn{2}{c}{}\\
@@ -19,24 +19,25 @@ Es wird für die erstellten Modelle eine statisch thermische Simulation durchgefü
 	\label{tab:beleg_anforderungen}
 \end{table}
 
-%\newpage
+\newpage
+In Abbildung \ref{fig:footprint_sot23} ist die Dimenion eines SOT23 Gehäuses und in Abbildung \ref{fig:footprint_smd1206} die Dimensionen eines SMD 1206 Widerstandes dargestellt.
 \begin{center}
 	\begin{minipage}[!ht]{.8\textwidth}
 			\captionsetup{type=figure}
 			\includegraphics[width=1\linewidth]{bilder/sot23footprint.pdf}
-			\caption{Transistor- Dimensionen als SOT23 Gehäuses, \\Quelle: NXP - PDTC114E Datenblatt S.10 }
-			\label{fig:Messaufbau}
+			\caption{Transistor - Reflowfootprint SOT23 Gehäuses, Quelle: NXP - PDTC114E Datenblatt S.12}
+			\label{fig:footprint_sot23}
 	\end{minipage}
 	\hspace{1cm}
-	\begin{minipage}[!ht]{0.45\textwidth}
+	\begin{minipage}[!ht]{0.81\textwidth}
 		\centering 
 		\captionsetup{type=figure}
-		%\def\svgwidth{200pt}
-		%\includegraphics[width=1\linewidth]{bilder/grafik_messaufbau.pdf}
-		%	\includegraphics{bilder/messstand_biegebalken}
-		%\resizebox{1.02\textwidth}{!}{\input{bilder/grafik_messaufbau.pdf_tex}}
-		\caption{Informationsverlauf des Messaufbaus}
-		\label{graf:Invormationsverlauf_Messaufbau}
+		\includegraphics[width=.7\linewidth]{bilder/smd1206.pdf}
+		\caption{Widerstand - Dimensionen SMD 1206, \\Quelle:\\
+			\url{http://www.siongboon.com/projects/2005-09-07_home_pcb_fabrication/footprint/1206.gif}}
+		%	\href{http://www.siongboon.com/projects/2005-09-07_home_pcb_fabrication/footprint/1206.gif}}
+		\label{fig:footprint_smd1206}
 	\end{minipage}
 \end{center}
+
 

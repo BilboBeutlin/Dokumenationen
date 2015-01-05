@@ -1,4 +1,5 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 1.1}{\ignorespaces Transistor- Dimensionen als SOT23 Geh\"auses, Quelle: NXP - PDTC114E Datenblatt S.10 \relax }}{2}{figure.caption.8}
-\contentsline {figure}{\numberline {\relax 1.2}{\ignorespaces Informationsverlauf des Messaufbaus\relax }}{2}{figure.caption.9}
+\contentsline {figure}{\numberline {\relax 1.1}{\ignorespaces Transistor - Reflowfootprint SOT23 Geh\"auses, Quelle: NXP - PDTC114E Datenblatt S.12\relax }}{2}{figure.caption.8}
+\contentsline {figure}{\numberline {\relax 1.2}{\ignorespaces Widerstand - Dimensionen SMD 1206, Quelle: \url {http://www.siongboon.com/projects/2005-09-07_home_pcb_fabrication/footprint/1206.gif}\relax }}{2}{figure.caption.9}
+\addvspace {10\p@ }
