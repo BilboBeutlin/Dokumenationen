@@ -1,0 +1,24 @@
+% Aufbau eines minimalen LaTeX-Dokument
+% Artikel, verwendete Papiergröße A4, Schriftgröße 12
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[latin1]{inputenc} % Zeichkodierung, Umlaute erlauben
+\usepackage[T1]{fontenc}
+\usepackage{ngerman} %neue deutsche Rechtschreibung verwenden
+
+% Daten für die Titel des Artikels
+\title{Das glückliche Leben der gemeinen Waldameise}
+\author{Hans Mustermann}
+\date{\today{}}
+
+\begin{document}  % Begin des Dokument
+
+\maketitle 	  % Überschrift, Author, Datum drucken
+
+\tableofcontents  % Inhaltverzeichnis drucken	
+
+\section{Einleitende Worte}
+
+bla bla
+
+\end{document}  % Ende des Dokuments

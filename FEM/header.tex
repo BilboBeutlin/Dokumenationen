@@ -1,0 +1,336 @@
+%-----------------------------------------------------------------------------
+% header.tex
+%-----------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+% Schriftgröße, Layout, Papierformat, Art des Dokumentes
+%-----------------------------------------------------------------------------
+\documentclass[12pt,					% Grundschriftgöße
+							 oneside,				% einseitiges Dokument
+							 a4paper,				% Papiergröße
+							 parskip=half,	% einzug bei einem Absatz
+							 listof=totoc,	% Verzeichniss (Abbildungen erc.) in das Inhaltverzeichnis
+							 bibliography=totoc,% Literaturverzeichnis ins Inhaltverzeichnis
+							 fleqn,					% Mathematische Formeln linksbündig darstellen
+							 captions=tableheading,
+							 appendixprefix=true,
+							 numbers=noenddot]	% Punkt am Ende der Nummerierung des Inhaltsverzeichnisses entfernen
+							 {scrbook} %scrreprt
+
+%-----------------------------------------------------------------------------
+% Konstanten festlegen
+%-----------------------------------------------------------------------------
+\newcommand{\Verfasser}{Henry Pohl (633 430), Dennis Felgentreu (633 374)}
+\newcommand{\Geburtstag}{11. April 1988}
+\newcommand{\Geburtsort}{Schwerin}
+\newcommand{\Titel}{Thermische Simulation einer 2D Transistormatrix zur Abbildung bewegter Objekten}
+\newcommand{\Betreuer}{Prof. Dr.-Ing. habil. Jörg Grabow}
+\newcommand{\FHBetreuer}{Dipl.-Ing. (FH) Stefan Franke}
+\newcommand{\ZweitBetreuer}{Name des zweiten Prüfers}
+
+%-----------------------------------------------------------------------------
+% verwendete Pakete
+%-----------------------------------------------------------------------------
+\usepackage{scrhack} 					% Warnungsbeseitigung  "You should use the features of package `tocbasic'..."
+\usepackage[latin1]{inputenc}	% Zeichkodierung , Umlaute erlauben
+\usepackage[T1]{fontenc}			% Wahl des Fonts, bzw. der Kodierung
+\usepackage[english,ngerman]{babel}	% neue deutsche Rechtschreibung verwenden
+\usepackage{graphicx}					% ermöglicht das Einbinden von Grafiken, sehr wichtig!!!!!!!!!!
+\usepackage{svg}						% ums .svg dateien einzufügen (Vektorgrafiken)
+\setsvg{inkscape=inkscape -z -C,svgpath=bilder/}
+\usepackage{etex}
+%\usepackage{fancyhdr}					% für formatierte Kopf- und Fußzeilen
+\usepackage{scrpage2}
+\usepackage{setspace}					% Package zum Kontrollieren von Leerräumen
+%\usepackage{subfigure}				% erweiterte Darstellung von Bildern
+\usepackage{listings}					% Möglickeit zum Anzeigen von Quelltexten
+\usepackage{color,moreverb}		% Farben
+\usepackage{lmodern}					% bietet neuere Schriften, sieht besser aus im Acrobat Reader
+\usepackage{amsmath,amssymb}	% erweiteter Formelsatz und zusätzliche Mathe-Symbole
+\usepackage{booktabs}					% professionelle Tabllen setzen, typographisch richtig
+\usepackage{shortvrb}					% benutzen der verbatim-Umgebung
+\usepackage{pgfplots}					% Aus Matlab Diagramme einbinden
+	\pgfkeys{/pgf/number format/.cd, 
+						fixed relative, 
+						precision=3,
+						use comma,
+						zerofill,
+%						scaled ticks=false,einfügen in die pfgsplots
+						} 				        % expotentielle Achsenbeschrieftung in dezimale Achsenbeschriftung geändert, Punkttrennung durch Komma ersetzen.
+%xticklabel style={%
+						%/pgf/number format/.cd,
+            %fixed,
+            %fixed zerofill,
+            %precision=3,
+    %},
+\usepackage{wrapfig}					% Bilder vom Text umfleißen lassen useage: \begin{wrapfigure}{r}{5cm}	\centering \includegraphics{Bild}% \caption{Hier steht die Beschreibung des Bildes}%	\end{wrapfigure}
+\usepackage{supertabular}
+\usepackage{calc}							% Skallierung von Vektorgrafikena aus Inkscape
+\usepackage{colortbl} 				% Farbigetabellen
+%\usepackage{xcolor}
+\usepackage{blindtext}				% Blindtext zum Testen von Textausgaben, use: \blindtext
+\usepackage{microtype}
+\usepackage{multirow}				% Felder über zwei Zeilen in Tabelle
+\usepackage{tabularx}
+		\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+		\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % zentriert mit Breitenangabe
+		\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+		
+		\newcommand{\ltab}{\raggedright\arraybackslash} % Tabellenabschnitt linksbündig
+		\newcommand{\ctab}{\centering\arraybackslash} % Tabellenabschnitt zentriert
+		\newcommand{\rtab}{\raggedleft\arraybackslash} % Tabellenabschnitt rechtsbündig
+\usepackage{caption}					% Einstellungen für Tabbelen+Bildunterschriften
+	\captionsetup{
+		format=hang,
+		%justification=centering,
+		%width=0.45\textwidth,
+		%singlelinecheck=off,
+}
+\usepackage{subfig}
+%\usepackage[squaren, thickqspace, thickspace]{SIunits}
+%\usepackage{siunitx}
+\usepackage[binary-units=true]{siunitx}
+\sisetup{output-decimal-marker = {,}}
+%\usepackage[subfigure]{tocloft}
+%\usepackage[table]{xcolor}
+%\usepackage[dvipsnames]{xcolor}
+%-----------------------------------------------------------------------------
+% Einstellungen der Seitenränder
+%-----------------------------------------------------------------------------
+\usepackage[left=3cm,					% linker Rand
+						right=3cm,				% rechter Rand
+						top=1.5cm,				% oberer Rand
+						bottom=1.5cm,			% unterer Rand
+						%showframe,               % Frame einbinden
+						includeheadfoot,	% bezieht die Kopf- und Fußzeile mit ein
+						bindingoffset=0cm]	% Bundsteg
+						{geometry}
+
+%-----------------------------------------------------------------------------
+% Daten für die Titel des Artikels
+%-----------------------------------------------------------------------------
+\title{Bachelor-Thesis}
+\author{\Verfasser}
+\date{\today{}}
+
+%-----------------------------------------------------------------------------
+% Metadaten in pdf einfügen
+%-----------------------------------------------------------------------------
+\usepackage[pdftex,
+						pdfauthor={\Verfasser},	% Name des Autors
+						pdftitle={\Titel},			% Name der Arbeit
+						pdfcreator={MiKTeX, LaTeX with hyperref and KOMA-Script}, % Von was erzeugt
+						pdfsubject={Bachelor-Thesis},	% Was für eine Arbeit ist es
+						pdfkeywords={\Titel},
+						plainpages=false,
+						hypertexnames=false,
+						pdfpagelabels]{hyperref}
+
+%-----------------------------------------------------------------------------
+% Schriftarten anpassen
+%-----------------------------------------------------------------------------
+\setkomafont{sectioning}{\rmfamily\bfseries}					% Titelzeilen
+\setkomafont{caption}{\small}													% Schrift für Caption
+\setkomafont{captionlabel}{\sffamily\bfseries\small}	% Schrift für 'Abbildung'
+\setkomafont{chapterentry}{\small\bfseries}						% Schrift für Inhaltsverzeichnis
+\setkomafont{chapter}{\large\bfseries}								% Schrift für Kapitel
+\setkomafont{section}{\normalsize}										% Schrift für Section
+\setkomafont{subsection}{\normalsize}									% Schrift für Subsection
+
+%-----------------------------------------------------------------------------
+% Inhaltverzeichnis
+%-----------------------------------------------------------------------------
+
+%siehe  main doc
+%-----------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+% Anhang
+%-----------------------------------------------------------------------------
+\makeatletter
+\newcommand*{\appchapter}[2][]{%
+  \setchapterpreamble[o]{%
+    \usekomafont{disposition}\usekomafont{chapter}%
+    \noindent\appendixname\par\medskip%
+  }%
+  \def\@tempa{#1}\ifx\@tempa\@empty%
+    \chapter{#2}%
+      \else%
+    \chapter[#1]{#2}%
+  \fi%
+}
+%siehe  main doc
+%-----------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------
+% Einstellungen für Matheumgebung
+%-----------------------------------------------------------------------------
+
+\usepackage{icomma}				% Komma als Definition für Beginn der Nachkommastellen
+%-----------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+%  Abb. und Tabelle 
+%-----------------------------------------------------------------------------
+\addto\captionsngerman{													%Abbildung in Abb. und Tabelle in Tab. umbennen
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
+}
+%\newcolumntype{C}[1]{>{\centering}p{#1}} 				% neuer Spaltentyp für Zentrierung des Zelleninhaltes, ACHTUNG! Zeilenumbruch mit: \tabularnewline 
+
+%\usepackage[showframe]{geometry}
+
+%-----------------------------------------------------------------------------
+% Farbe für Links in PDF-Dokumenten definieren
+%-----------------------------------------------------------------------------
+\definecolor{LinkColor}{rgb}{0,0,0.5}	% Festlegen einer neuen Farbe
+
+\hypersetup{colorlinks=true,			% farbliche Links
+						breaklinks=true,			% Zeilenumbruch erlauben
+						linkcolor=black,			% Farbe für interne Links
+						citecolor=black,			% Farbe für Links zum Literaturverzeichnis
+						filecolor=LinkColor,	% Farbe für externe Dateilinks
+						menucolor=LinkColor,	%
+						urlcolor=LinkColor}		% Farbe für externe Links
+						
+%-----------------------------------------------------------------------------
+% Darstellung des Literaturverzeichnisses einstellen
+%-----------------------------------------------------------------------------						
+\bibliographystyle{unsrtdin}	% Stil des Literaturverzeichnisses (hier nach DIN 1505)
+
+%-----------------------------------------------------------------------------
+% Darstellung des Glossars und Abkürzungsverzeichnisses einstellen
+%-----------------------------------------------------------------------------
+
+\usepackage[style=super,nonumberlist,acronym=true,toc]{glossaries}
+%Den Punkt am Ende jeder Beschreibung deaktivieren
+\renewcommand*{\glspostdescription}{}
+%\renewcommand{\acronymname}{Abkürzungsverzeichnis}	
+% -s %tm.ist -t %tm.alg -o %tm.acr %tm.acn	
+%\usepackage[nonumberlist,acronym,shortcuts]{glossaries}		
+%\glsaddall 														% Alle definierten Abkürzungen ins Abk.Verzeichnis einfügen
+%\renewcommand*{\glspostdescription}{}	%Den Punkt am Ende jeder Beschreibung deaktivieren
+\newglossarystyle{mylist}{%							% sollte später noch als style für gossaries definiert werden				
+	\renewenvironment{theglossary}%
+		{\begin{longtable}{@{\extracolsep\fill}lll}}%
+		{\end{longtable}}%
+	\renewcommand*{\glossaryheader}{%
+		\\%
+		{\bf Abkürzung} & {\bf Erläuterung}\\%
+		\hline\hline%
+		\\[-0.5ex]%
+		\endfirsthead%
+		\caption*{\bfseries Wichtige Abkürzungen -- Fortsetzung}\\%
+		{\bf Abkürzung} & {\bf Erläuterung}\\%
+		\hline\hline%
+		\endhead%
+		\hline\hline%
+		\multicolumn{3}{r}{\slshape%
+		Fortsetzung auf der nächsten Seite}\\%
+		\endfoot%
+		\\%
+		\hline\multicolumn{3}{l}{}%
+		\endlastfoot}%
+	\renewcommand*{\glsgroupheading}[1]{}%
+	\renewcommand*{\glsgroupskip}{}%
+	\renewcommand*{\glossentry}[2]{%  
+    \glsentryitem{##1}% Entry number if required  
+    \glstarget{##1}{\glossentryname{##1}}% Name  
+    & \glossentrydesc{##1}% Description  
+    \tabularnewline % end of row  
+  }%
+}
+
+\input{abkürzungsverzeichnis}
+
+%-----------------------------------------------------------------------------
+% Definition für Quelltextlistings
+%-----------------------------------------------------------------------------
+\lstloadlanguages{Matlab,[Visual]C++,C}
+
+\definecolor{lbcolor}{gray}{0.9}			% Farbe für den Hintergrund definieren				
+\definecolor{darkblue}{rgb}{0,0,.6}		% Farbe für Schlüsselwörter
+\definecolor{darkred}{rgb}{.6,0,0}		% Farbe für Strings
+\definecolor{darkgreen}{rgb}{0,.6,0}	% Farbe für Kommentare
+
+%\lstset{language=Matlab,					% Programmiersprache der Listings
+%				numbers=left,							% Zeilennummern links angeben
+%				stepnumber=1,							% in welchem Abstand sollen Zeilennummern angeben werden (1 2 3..)
+%				numbersep=5pt,
+%				numberstyle=\tiny,				% grösse der Nummern
+%				breaklines=true,					% Zeilenumbruch zulassen
+%				breakautoindent=true,
+%				postbreak=\space,
+%				tabsize=2,								% Tabulator auf 2 setzen
+%				basicstyle=\ttfamily\footnotesize,
+%				showspaces=false,					% leerzeichen nicht anzeigen
+%				showstringspaces=false,		% keine Leerzeichen bei Strings anzeigen
+%				extendedchars=true,
+%				backgroundcolor=\color{lbcolor}}	% Hintergrundfarbe des Listings
+
+\lstset{language=C,								% Programmiersprache der Listings
+				alsolanguage=Matlab,			% alternative Programmiersprache der Listings
+				frame=none,								% keinen Rahmen
+				frameround=ffff,					% wenn ein Rahmen dargestellt werden soll, sind die Ecken spitz
+				captionpos=b,							% Position der Benennung
+				numbers=left,							% Zeilennummern links angeben
+				stepnumber=1,							% in welchem Abstand sollen Zeilennummern angeben werden (1 2 3..)
+				numbersep=5pt,						% Abstand zwischen Nummerierung und Listing
+				numberstyle=\tiny,				% grösse der Nummern
+				breaklines=true,					% Zeilenumbruch zulassen
+				breakautoindent=true,
+				postbreak=\space,
+				tabsize=4,								% Tabulator auf 4 setzen
+				escapechar=\$,
+				basicstyle=\scriptsize\ttfamily,
+				keywordstyle=\color{darkblue}\bfseries\ttfamily,	% Darstelung der Schlüsselwörter
+				stringstyle=\ttfamily\color{darkred},  						% Darstellung der Strings
+				commentstyle=\itshape\color{darkgreen},						% Darstellung der Kommentare
+				showspaces=false,					% leerzeichen nicht anzeigen
+				showstringspaces=false,		% keine Leerzeichen bei Strings anzeigen
+				xleftmargin=.52cm,
+				xrightmargin=.52cm,				
+				backgroundcolor=\color{lbcolor}}	% Hintergrundfarbe des Listings}
+				
+%-----------------------------------------------------------------------------
+% Kopf- und Fusszeile bestimmen
+%-----------------------------------------------------------------------------
+\usepackage{scrpage2}
+
+%\deftripstyle{chapterstyle}[][.4pt]{}{}{}{}{}{\pagemark}		% eigner Style für die Erste Seiten eines Kapitels
+\defpagestyle{chapterstyle}{%
+		{}
+		{}
+		{}
+	}{%
+		(\textwidth,.4pt)
+		{}
+		{}
+		{}
+		%{\hfill\pagemark}
+}
+\renewcommand*\chapterpagestyle{chapterstyle}				% chaptyerstyle übernehmen
+\defpagestyle{sectionstyle}{%
+			{}
+			{}
+			{\headmark\hfill}
+			(\textwidth,.4pt)
+		}{%
+			(\textwidth,.4pt)
+			{}
+			{}
+			{\hfill\pagemark}
+		}
+\pagestyle{sectionstyle}
+\automark[section]{chapter}
+
+%-----------------------------------------------------------------------------
+
+% % % % % % % % % % % % % % % % % % % % % % % % 
+%
+% Schusterjungen und Hurenkinder verbieten:
+%
+% % % % % % % % % % % % % % % % % % % % % % % % 
+\clubpenalty=10000%
+\widowpenalty=10000%

@@ -1,0 +1,533 @@
+\chapter{Software-Realisierung}
+Die Software für  den Mikrocontroller wird in ANSI C geschrieben und gliedert sich in drei Hauptbestandteile: Schrittgenerierung, Stromregelung, Kommunikation (I\textsuperscript{2}C).
+
+\section{Schrittgenerierung}
+
+Die Schrittgenerierung (Phasengenerierung) erfolgt über dem in Kapitel \ref{sec:MAnsteuerung} beschriebenen Ablauf. Nach dem letzten Schritt wiederholt sich der Ablauf, so dass die State Machine aus vier Zuständen besteht (siehe Abbildung \ref{fig:statemachine}). 
+Der Zustandsautomat wird in der Interrupt-Service-Routine (ISR) des Timer 2 als Switch-Case-Anweisung abgearbeitet. 
+Die Frequenz (f) des Timers ist äquivalent der Drehzahl (n) des Motors und abhängig von der Schrittweite ($\alpha$). 
+\begin{equation}
+n = f \cdot 60 \cdot \frac{\alpha}{360} \qquad[n]=\frac{1}{\text{min}} \quad [f]=\text{Hz}
+\label{eq:freqdreh}
+\end{equation}
+Soll zwischen Vorwärts- ($\text{v}$) und Rückwärtsdrehung ($\overline{\text{v}}$) unterschieden werden, läuft der Zustandsgraph gegen den Uhrzeigersinn ab. Die Richtung und die Schrittfrequenz wird vom Kraftregler an die Schrittmotorsteuerung übergeben.
+
+%Quelle: LT-Spice
+\begin{center}
+			\captionsetup{type=figure}
+			\input{bilder/statemachine_0.pdf_tex}
+			\caption{State Machine}
+			\label{fig:statemachine}
+\end{center}
+
+\section{Stromregelung}\label{sc:stromregelung}
+Um eine Stromregelung zu generieren, wird die Ansteuerung nach dem Buck-Converter-Prinzip vorgenommen (siehe Kapitel \ref{sec:buckconvert}). Das heißt, dass zusätzlich zu den vier Zuständen der Ausgänge ein PWM-Signal überlagert wird \mbox{(siehe Abbildung \ref{fig:pwm})}.
+Das PWM-Signal wird im Timer 0 erzeugt und läuft mit einer Frequenz von 78,125~kHz. Um die Überlagerung zu gewährleisten, wird das PWM-Signal herausgeführt und über ein UND-Glied mit den Signalen aus der State Machine konjunktiv verknüpft.
+
+\begin{figure}[h!]%Quelle: LT-Spice
+			\centering
+			\input{bilder/pwm1.pdf_tex}
+			\caption{Prinzipielle Darstellung der Überlagerung von der PWM und der Schrittgenerierung}
+			\label{fig:pwm}
+\end{figure}
+
+\newpage
+\subsection{Theoretische Vorbetrachtung}
+Für die theoretische Bestimmung der Regelparameter wird eine Vorbetrachtung der Regelstrecke in MATLAB/Simulink durchgeführt. Wie im Kapitel \ref{ch:hbrucke} beschrieben, wird der Strom über eine Spannungsmessung am Shunt mit $\SI{0,25}{\ohm}$ ermittelt. Es wird in allen Diagrammen nur die Spannung angezeigt, sie kann jeder Zeit in den Strom umgerechnet werden. In Abbildung \ref{graf:sprungantwort} ist die Sprungantwort für den Schrittmotor dargestellt. Es wurde ein Spannungssprung mit $1 \text{ V}$ bei $0,010\text{ s}$ auf die Strecke gegeben. Die Sprungantwort ist die Spannung am Shunt. Die Strecke ist in Abbildung \ref{graf:reglkreis}, mit der Wicklungsimpedanz ($L_\text{i} = 1,6 \text{ mH}$, $R_\text{i} = 0,5\,\Omega$), dem Messwiderstand ($R_\text{mess} = 0,25\,\Omega$) dargestellt.
+%
+% Sprungantwort Motor
+%
+%\begin{figure}[!h]%
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[	width=0.9\textwidth,
+									height=0.5\textwidth,
+									% % % % % % % % X-Achse
+									xmin=0,
+									xmax=0.03,
+									xtick={0.010,0.015,0.020,0.025,0.030},
+									xticklabel style={%
+													/pgf/number format/.cd,
+													fixed,
+													fixed zerofill,
+													precision=3,
+									},
+									xlabel={$t/\text{s}$},
+									% % % % % % % % Y-Achse
+									%ymin=0,
+									%ymax=0.4,
+									yticklabel style={%
+													/pgf/number format/.cd,
+													fixed,
+													fixed zerofill,
+													precision=1,
+													set thousands separator={},
+									},
+									ylabel={$U/\text{V}$},
+									% % % % % % % %  Legende
+									legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+									]
+ 			%\addplot [color=blue,solid]table[row sep=crcr] {matlab/sprungantwort1.csv};
+			%\addlegendentry{Spannungssprung auf 1 V};
+			\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/sprungantwort2.csv};
+			\addlegendentry{Spannungsantwort};
+		\end{axis}
+	\end{tikzpicture}
+		\captionsetup{type=figure}
+		\caption{Schrittmotor Sprungantwort }%
+		\label{graf:sprungantwort}%
+\end{center}
+
+
+
+%\begin{center}
+	%\centering
+	%\input{matlab/Schrittmotor_Sprungantwort_2.tex}
+	%\captionsetup{type=figure}
+	%\caption{Schrittmotor Sprungantwort}%
+	%\label{graf:sprungantwort}%
+%\end{center}	
+%\end{figure}
+%\input{matlab/Schrittmotor_Sprungantwort.tex}
+Die Grafik zeigt für den Motor ein PT1-Verhalten. Der Beharrungswert stellt sich bei $0,33 \text{ V}$ nach $0,03\text{ s}$.
+Die Streckenverstärkung berechnet sich aus dem Quotienten der Ist-Wertänderung $\Delta x$ (Spannungssprung am Eingang) und der Soll-Wertänderung $\Delta y$ (Beharrungswert der Spannung am Ausgang)
+\begin{equation}
+	k_s=\frac{\Delta x}{\Delta y}=\frac{0 \text{ V} 0,33 \text{ V}}{0 \text{ V} - 1 \text{ V}} = 0,33\text{ }.
+\label{eq:Streckenverstärkung}
+\end{equation}
+
+Die Zeit beim erreichen von $0,63\,\%$ des Beharrungswertes beträgt $T_{0,63} = 0,0023\;s$.
+Daraus ergibt sich für die Regelstrecke die Übertragungsfunktion:
+\begin{equation}
+	G(s) = \frac{0,33}{1+ 0,0023 s \cdot s }.
+\label{eq:uebertragungsfunktion}
+\end{equation}
+
+ 
+Es wird für die Regelung ein PI-Regler angewendet. Dieser hat, im Gegensatz zum P-Reger, durch den Integralanteil keine bleibende Regelabweichung. 
+Der Regler besteht aus dem Proportionalglied mit dem Parameter $k_p$ und dem Integralglied mit dem Parameter $k_i$ 
+\begin{equation}
+	y(t)=k_p \cdot e(t) + k_i \cdot \int \limits_{0}^\tau \! e(\tau) \, d\tau \text{ .}
+\label{eq:piregler}
+\end{equation}
+Die Bestimmung von $k_p$ und $k_i$ erfolgt über die Einstellregeln von \emph{Chien-Hrones-Reswick} für einen PI-Regler.
+\begin{equation}
+	k_p = \frac{0,35}{k_s}\cdot \frac{T_g}{T_u} 
+\label{eq:chr1}
+\end{equation}
+\begin{equation}
+k_i = k_p \cdot 1,2 \cdot T_g
+\label{eq:chr2}
+\end{equation}
+
+\begin{center}
+	\input{bilder/regelkreis_pi_wicklung.pdf_tex}
+	\captionsetup{type=figure}
+	\caption{Prinzipdarstellung des Regelkreises}%
+	\label{graf:reglkreis}%
+\end{center}
+
+
+Für die PT1-Strecke ist eine Ausgleichszeit $T_g = 0,0023 \text { s}$ aus Abbildung \ref{graf:sprungantwort}. ermittelt worden. Eine Verzugszeit $T_u$ ist nicht enthalten: sie wird deshalb für die Berechnung der Parameter als viel kleiner als die Ausgleichszeit angenommen: $T_u  <<  T_g$, d.h. \mbox{$T_u = 0,0001\text{ s}$}.
+Eingesetzt in die Formeln \ref{eq:chr1} und \ref{eq:chr2} ergibt das für $k_p = 24.4$ und für $k_i = 0,0023$.
+%
+% Sprungantwort Regler
+%
+
+Der prinzipielle Aufbau des Regelkreises in Simulink ist in Abbildung \ref{graf:reglkreis} dargestellt. 
+Der Beharrungswert stellt sich  nach $0,0076 \text{ s}$ ein (siehe Abbildung \ref{graf:fuehr_anal1}) und erreicht den SOLL-Wert nicht.
+Durch den zuvor gestellte Annahme das $T_u  <<  T_g$ ist, war zu erwarten, dass die ermittelten Parameter noch nicht das Optimum darstellen.  
+Um ein hinreichend schnelles Erreichen des Beharrungswertes zu gewährleisten, werden in der Simulation die Parameter angepasst.
+Die Korrektur des Proportionalitäts-Faktors hat die größte Auswirkung auf das Führungsverhalten. 95\% des SOLL-Wertes werden bei $t=0,025\text{ s}$ erreicht und der IST-Wert nähert sich ihm weiter asymptotisch (siehe Abbildung \ref{graf:fuehr_anal2}).
+%Es wird ein Sollwert (w) vorgeben und aus der Differenz mit der Strommessung die Spannung eingestellt. Das in Simulink simulierte Führungsverhalten des umgesetzten PI-Reglers ist in \mbox{Abbildung \ref{graf:Reglersprungantwort}} dargestellt. Nach $0,0105\text{ s}$ hat die Regelstrecke den Sollwert zu $90\%$ erreicht, der Beharrungswert stellt sich nach $0,002\text{ s}$ ein.
+%\begin{center}
+	%\input{matlab/Schrittmotor_Sprungantwort_Regler_1.tex}
+	%\captionsetup{type=figure}
+	%\caption{Führungsverhalten}%
+	%\label{graf:Reglersprungantwort}%
+%\end{center}
+	\begin{figure}%
+		\subfloat[\label{graf:fuehr_anal1} $k_\text{i}=0,0673$, $k_\text{p}=24,4$]{
+			\begin{tikzpicture}
+				\begin{axis}[	width=0.45\textwidth,
+											height=.45\textwidth,
+											% % % % % % % % X-Achse
+											xmin=0,
+											xmax=0.03,
+											xtick={0.005,0.015,0.025},
+											xticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=3,
+											},
+											xlabel={$t/\text{s}$},
+											% % % % % % % % Y-Achse
+											ymin=0,
+											%ymax=0.4,
+											yticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=1,
+															set thousands separator={},
+											},
+											ylabel={$U_{R_{\text{mess}}}/\text{V}$},
+											% % % % % % % %  Legende
+											legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+											]
+					\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_sprung1.csv};
+					\addlegendentry{SOLL-Wert};
+					\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/regler_sprungantwort1.csv};
+					\addlegendentry{IST-Wert};
+				\end{axis}
+			\end{tikzpicture}
+			}
+	%			\captionsetup{type=figure}
+	%			\caption{$k_\text{i}=0.067344$, $k_\text{p}=24,4$ }%
+	%			\label{graf:sprungantwort}%
+	%	
+	%\end{minipage}
+	%\hspace{0.5cm}
+	%\begin{minipage}[!ht]{0.49\textwidth}
+	%	\begin{center}
+		\subfloat[\label{graf:fuehr_anal2}$k_\text{i}=6000$, $k_\text{p}=24,4$]{
+			\begin{tikzpicture}
+				\begin{axis}[	width=.45\textwidth,
+											height=.45\textwidth,
+											% % % % % % % % X-Achse
+											xmin=0,
+											xmax=0.03,
+											xtick={0.005,0.015,0.025},
+											xticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=3,
+											},
+											xlabel={$t/\text{s}$},
+											% % % % % % % % Y-Achse
+											ymin=0,
+											%ymax=0.4,
+											yticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=1,
+															set thousands separator={},
+											},
+											ylabel={$U_{R_{\text{mess}}}/\text{V}$},
+											% % % % % % % %  Legende
+											legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+											]
+					\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_sprung2.csv};
+					\addlegendentry{SOLL-Wert};
+					\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/regler_sprungantwort2.csv};
+					\addlegendentry{IST-Wert};
+				\end{axis}
+			\end{tikzpicture}
+			}
+			\centering
+			\caption{Führungsverhalten: \\a) nach berechneten Regelparametern\\ b) nach korrigierten Regelparametern }%
+			\label{graf:fuehrungsverhalten}%
+	\end{figure}
+		%	\captionsetup{type=figure}
+		%	\caption{$k_\text{i}=6000$, $k_\text{p}=24,4$}% }
+		%	\label{graf:sprungantwort1}%
+	%\end{center}
+%\end{minipage}
+
+
+Für die Regelung im Mikrocontroller muss eine Diskretisierung vorgenommen werden. Der Motor 1 kann einen maximalen Strom von $4,2 \text{ A}$ aufnehmen. Zur Auswertung am Mikrocontroller kommt der ADC zum Einsatz. Der ADC-Wandler besitzt eine maximale Auflösung von $10$ Bit. Da die maximale Registerbreite des ATMega $8$ Bit beträgt, wird der gewandelte Wert in zwei Register aufgeteilt. Die Rechnung mit einem $10$ Bit-Wert ist durch die Arbeit mit zwei Registern aufwändiger, deshalb wird eine Auflösung mit $8$ Bit bevorzugt. 
+Die 10 Bit-Auflösung liefert eine Spannungsauflösung von \SI{0,001}{\volt}, eine Minimierung auf 8 Bit erzeugt eine Auflösung von \SI{0,004}{\volt} (siehe Tabelle \ref{tab:spanungsaufloesung}). Die resultierende Stromauflösung von \SI{0,004}{\A} bei 8 Bit ist für die Stromregelung ausreichend.
+%\begin{align}
+%\end{align}
+\begin{table}[!h]
+	\centering
+		\caption{Spannungsauflösung}
+		%\rowcolors{3}{gray}{yellow}
+		\begin{tabular}{L{2cm}L{3.8cm}L{5cm}L{3cm}}
+			\textbf{Auflösung}					& \textbf{Spannungs-auflösung} 						&	\textbf{resulitierende Stromauflösung}	& \textbf{Anzahl der Register}	\\ \hline
+			$10$ Bit 										&$1,1 \text{ V}/2^{10}= \SI{0,0011}{\volt}$& $\SI{0,0011}{\volt}/\SI{0,25}{\ohm}=\SI{0,004}{\A}$	&	2									\\
+			\rowcolor[gray]{.8}	$8$ Bit &$1,1 \text{ V}/2^{8}= \SI{0,0043}{\volt}$	&	$\SI{0,0043}{\volt}/\SI{0,25}{\ohm}=\SI{0,0172}{\A}$  &	1															\\
+ 		\end{tabular}
+	\label{tab:spanungsaufloesung}
+\end{table}
+
+% % % % % % % % % % % % % % % % %
+% Regler Diskretierung
+% % % % % % % % % % % % % % % % %
+Um eine mögliche Umsetzung für den Mikrocontroller zu untersuchen, wird der zuvor simulierte Regler mit einer 8 Bit Auflösung in MATLAB/Simlink diskretisiert. 
+Die Spannungswandlung für den ADC wird bei einer steigenden Flanke des PWM-Signals getriggert. So ist gewährleistet, dass der Strom immer im High-Abschnitt der PWM gemessen wird.
+Die Samplefrequenz entspricht der PWM-Frequenz und beträgt 78,125 kHz. In Abbildung \ref{graf:Reglersprungantwort_diskret} ist die diskretisierte Sprungantwort der Regelstrecke dargestellt. 
+%\begin{center}
+	%\input{matlab/Schrittmotor_Sprungantwort_diskret.tex}
+	%\captionsetup{type=figure}
+	%\caption{diskretisierte Sprungantwort auf 8 Bit}%
+	%\label{graf:Reglersprungantwort_diskret}%
+%\end{center}
+%%%
+% Diskretisierte SPrungantwort
+%%%
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[	width=0.8\textwidth,
+									height=0.5\textwidth,
+									% % % % % % % % X-Achse
+									xmin=0,
+									xmax=0.03,
+									xtick={0.005,0.010,0.015,0.020,0.025,0.030},
+									xticklabel style={%
+													/pgf/number format/.cd,
+													fixed,
+													fixed zerofill,
+													precision=3,
+									},
+									xlabel={$t/\text{s}$},
+									% % % % % % % % Y-Achse
+									ymin=0,
+									ymax=85,
+									yticklabel style={%
+													/pgf/number format/.cd,
+													fixed,
+													fixed zerofill,
+													precision=0,
+									},
+									ylabel={$U/(0,0043\cdot\text{V})$},
+									% % % % % % % %  Legende
+									legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+									]
+ 			\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_digi_sprungantwort1.csv};
+			\addlegendentry{diskretisierte Spannung};
+		\end{axis}
+	\end{tikzpicture}
+		\captionsetup{type=figure}
+		\caption{mit 8 Bit diskretisierte Sprungantwort }%
+		\label{graf:Reglersprungantwort_diskret}%
+\end{center}
+
+Die diskrete Sprungantwort erreicht den Beharrungswert von $78{\text{ Digits}}$ nach $0,021\text{ s}$. Nach den Einstellregeln von \emph{Takahashi} für einen digitalen PI-Regler werden die Regelparameter berechnet. Die Parameter $k_s$ sowie $T_g$ und $T_u$ bleiben gleich, da sich die Strecke nicht verändert hat. Auch die Annahme von $T_u << T_g$ wird für die Berechnung beibehalten, eine nötige Anpassung der Parameter erfolgt in der Simulation. Die Abtastzeit wird aus der PWM-Frequenz berechnet, da sie die Spannungswandlung im ADC startet.
+
+
+\begin{equation}
+T_{Abtast} = \frac{1}{f_{\text{PWM}}} = 13,9 \text{ $\mu$s}
+\label{eq:tkh3}
+\end{equation}
+\begin{equation}
+	k_{p_{\text{diskret}}} = \frac{1}{k_s}\cdot \frac{0,9 \cdot T_g}{T_u+\frac{T_{\text{Abtast}}}{2}} = 58,12 
+\label{eq:tkh1}
+\end{equation}
+\begin{equation}
+k_{i_{\text{diskret}}}  = k_{p_{\text{diskret}}} \cdot 3,3 \cdot \left(T_u + \frac{T_{\text{Abtast}}}{2}\right)=0,021.
+\label{eq:tkh2}
+\end{equation}
+
+
+Für die berechnete Parameter ist das Führungsverhalten in Abbildung \ref{graf:fuehr_diskret1} dargestellt. Es ist deutlich zu erkennen, dass der Regler um den SOLL-Wert mit einer maximalen Überschwingweite von $12 \text{ Digits}$ schwingt. Nach Minimierung des Proportionalgliedes auf $k_{p_{\text{diskret}}} = 5$ senkt sich die maximale Überschwingweite auf $4$ Digits und es stellt sich der SOLL-Wert nach $0,01\text{ s}$ ein (siehe Abbildung \ref{graf:fuehr_diskret2}).
+
+\begin{figure}[htb]%
+\begin{center}
+		\subfloat[\label{graf:fuehr_diskret1}$k_\text{i}=0,021$, $k_\text{p}=58,12$]{
+			\begin{tikzpicture}
+				\begin{axis}[	width=.47\textwidth,
+											height=.47\textwidth,
+											% % % % % % % % X-Achse
+											xmin=0.00,
+											xmax=0.015,
+											xtick={0.005,0.01,0.015,0.025},
+											xticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=3,
+											},
+											xlabel={$t/\text{s}$},
+											% % % % % % % % Y-Achse
+											ymin=0,
+											ymax=200,
+											yticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=0,
+															set thousands separator={},
+											},
+											ylabel={$U_{R_{\text{mess}}}/(0,0043\cdot\text{V})$},
+											% % % % % % % %  Legende
+											legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+											]
+					\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_digi_sprungantwort1_1.csv};
+					\addlegendentry{SOLL-Wert};
+					\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/regler_digi_sprungantwort1_2.csv};
+					\addlegendentry{IST-Wert};
+				\end{axis}
+			\end{tikzpicture}
+		}
+		\subfloat[\label{graf:fuehr_diskret2}$k_\text{i}=0,021$, $k_\text{p}=5$]{
+			\begin{tikzpicture}
+				\begin{axis}[	width=.47\textwidth,
+											height=.47\textwidth,
+											% % % % % % % % X-Achse
+											xmin=0,
+											xmax=0.015,
+											xtick={0.005,0.01,0.015,0.025},
+											xticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=3,
+											},
+											xlabel={$t/\text{s}$},
+											% % % % % % % % Y-Achse
+											ymin=0,
+											ymax=200,
+											yticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=0,
+															set thousands separator={},
+											},
+											ylabel={$U_{R_{\text{mess}}}/(0,0043\cdot\text{V})$},
+											% % % % % % % %  Legende
+											legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+											]
+					\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_digi_sprungantwort2_2.csv};
+					\addlegendentry{SOLL-Wert};
+					\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/regler_digi_sprungantwort2_1.csv};
+					\addlegendentry{IST-Wert};
+				\end{axis}
+			\end{tikzpicture}
+			}
+			\centering
+			\captionsetup{type=figure}
+			\caption{Führungsverhalten: \\a) nach berechneten Regelparametern\\ b) nach korrigierten Regelparametern }%
+			\label{graf:fuehrungsverhalten}%
+\end{center}
+\end{figure}
+
+
+Die Regelparameter wurden auf ein gutes Führungsverhalten optimiert. Zusätzlich soll das Störungsverhalten betrachtet werden. Eine besondere Untersuchung des Störverhalten muss erfolgen, da die Kraftregelung einen direkten Einfluss auf die Stromaufnahme des Motors hat. Hierfür wird im Simulink-Modell ein zusätzlicher Strom eingeprägt, was eine Erhöhung der Kraft entspricht und der Motor somit mehr als den eingestellten Strom benötigt.
+\begin{figure}[htb]%
+%\begin{center}
+		\subfloat[\label{graf:stoer_diskret1}$k_\text{i}=0.021$, $k_\text{p}=5$]{
+			\begin{tikzpicture}
+				\begin{axis}[	width=0.45\textwidth,
+											height=.45\textwidth,
+											% % % % % % % % X-Achse
+											xmin=0,
+											xmax=0.03,
+											xtick={0.005,0.015,0.025},
+											xticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=3,
+											},
+											xlabel={$t/\text{s}$},
+											% % % % % % % % Y-Achse
+											ymin=0,
+											ymax=260,
+											yticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=0,
+															set thousands separator={},
+											},
+											ylabel={$U_{R_{\text{mess}}}/(0,0043\cdot\text{V})$},
+											% % % % % % % %  Legende
+											legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+											]
+					\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_digi_sprungantwort_stoer1_1.csv};
+					\addlegendentry{SOLL-Wert};
+					\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/regler_digi_sprungantwort_stoer1_2.csv};
+					\addlegendentry{IST-Wert};
+				\end{axis}
+			\end{tikzpicture}
+		}
+		\subfloat[\label{graf:stoer_diskret2}$k_\text{i}=0.021$, $k_\text{p}=5$]{
+			\begin{tikzpicture}
+				\begin{axis}[	width=.45\textwidth,
+											height=.45\textwidth,
+											% % % % % % % % X-Achse
+											xmin=0,
+											xmax=0.03,
+											xtick={0.005,0.015,0.025},
+											xticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=3,
+											},
+											xlabel={$t/\text{s}$},
+											% % % % % % % % Y-Achse
+											ymin=0,
+											ymax=260,
+											yticklabel style={%
+															/pgf/number format/.cd,
+															fixed,
+															fixed zerofill,
+															precision=0,
+															set thousands separator={},
+											},
+											ylabel={$U_{R_{\text{mess}}}/(0,0043\cdot\text{V})$},
+											% % % % % % % %  Legende
+											legend style={at={(0.97,0.03)},anchor=south east,draw=black,fill=white,legend cell align=left}
+											]
+					\addplot [color=blue,solid]table[row sep=crcr] {matlab/regler_digi_sprungantwort_stoer2_1.csv};
+					\addlegendentry{SOLL-Wert};
+					\addplot [color=black!50!green,solid]table[row sep=crcr]{matlab/regler_digi_sprungantwort_stoer2_2.csv};
+					\addlegendentry{IST-Wert};
+				\end{axis}
+			\end{tikzpicture}
+			}
+			\centering
+			\captionsetup{type=figure}
+			\caption{Störverhalten: \\a) SOLL-Strom: $4 \text{ A}$, Störung: $1 \text{ A}$, Sättigung bei 255  \\ b) SOLL-Strom: $3 \text{ A}$, Störung: $1 \text{ A}$, keine Sättigung vorhanden  }%
+			\label{graf:fuehrungsverhalten}%
+%\end{center}
+\end{figure}
+Es wird davon ausgegangen, dass der Motor mit einem maximal Strom von $4\text{ A}$ betrieben wird. Durch eine Erhöhung der Stellgröße im Kraftregler benötigt der Motor sprunghaft mehr Leistung. In der Abbildung \ref{graf:stoer_diskret1} ist die höhere Leistung durch einen sprunghaften Anstieg des IST-Wertes zu sehen. Diese Störung wird durch die 8 Bit Auflösung nicht vollständig dargestellt, der ADC erreicht eine Sättigung bei 255. In der Abbildung \ref{graf:stoer_diskret2} ist die Führungsgröße reduziert, bei gleicher Störgröße kommt es zu keiner Sättigung. Der Unterschied zwischen den beiden Abbildungen im Störverhalten ist, dass wenn keine Sättigung vorliegt der Integralteil geringer ist. Der SOLL-Wert wird durch ein Unterschwingen später erreicht. Für die Abbildung \ref{graf:stoer_diskret1} ist zusätzlich zur Sättigung zu erwähnen, dass es ein maximales Überschwingen von $5\text{ Digits}$ erfolgt, was einenmStrom von $86 \text{ mA}$ entspricht (siehe Gleichung \ref{eq:messwert}).
+\begin{equation}
+\text{Messwert} \cdot \frac{\text{Spannungs-Auflösung}}{\text{Messwiderstand}}= 5 \cdot \frac{0,0043\text{ V}}{0,25 \, \Omega} = 86 \text{ mA}
+\label{eq:messwert}
+\end{equation}
+
+\newpage
+\subsection{Praktische Umsetzung im Controller}
+Die praktische Umsetzung der Regelung im Mikrocontroller erfolgt in der Interrupt-Service-Routine (ISR) des ADC (siehe Abbildung \ref{fig:Strukt}). %\textit
+
+\begin{wrapfigure}{r}{7cm}	
+			\captionsetup{type=figure}
+			\input{bilder/strukt.pdf_tex}
+			\caption{ISR ADC, Strukturgramm zur Stromregelung}
+			\label{fig:Strukt}	
+\end{wrapfigure}
+Als erstes wird der gewandelte ADC-Wert in $ADC_\text{ist}$ abgespeichert. Daraufhin wird die Differenz zu dem Soll-Wert (ADC$_\text{SOLL}$) gebildet und in $ADC_\text{diff}$ hinterlegt.
+Für die Integration wird die Differenz aufsummiert und mit Integralglied ($ADC_\text{ki}$) multipliziert. Für den Proportionalteil wird die Diffrenz mit Proportionalglied ($ADC_\text{kp}$) multipliziert und mit den Integralteil (ADC$_\text{int}$) addiert. Für $ADC_\text{Reg}$ ist eine 8-Bit Sättigung vorhanden. Das Ergebnis kann direkt in das Register \textit{OCR0B} geschrieben werden, da es ebenfalls 8 Bit groß ist.  Es ist keine weitere Umwandlung notwendig.
+
+Die Summe der Differenzen ($ADC_\text{sum}$) ist vom Datentyp $int$ und erfährt eine Sättigung bei $\pm32766$. Das Integralglied ($ADC_\text{ki}$) wird nicht als Gleitkommazahl hinterlegt, sondern als Festkommazahl, das Bedeutet, dass nicht der berechnetet Wert von $0,021$ sondern $21$ angegeben wird. Daraus resultiert, dass das Produkt aus $ADC_\text{sum}$ und $ADC_\text{ki}$ durch Tausend dividiert wird.
+
+Die Einstellungen für den ADC, sowie die Timer für die PWM und die State-Machine werden im Anhang in den Headerdateien beschrieben.
+
+\section{Kommunikation-I\textsuperscript{2}C}
+Die Parametrisierung der Motorsteuerung erfolgt über I\textsuperscript{2}C-Bus. Bevor die Motorsteuerung für einen Motor in Betrieb genommen werden kann, muss der maximale Phasenstrom eingestellt werden. Ebenso sollte die maximale Drehzahl und die Parameter für die Stromregelung übermittelt werden. Durch diese Einstellungen kann die Schrittmotorsteuerung für unterschiedliche Schrittmotoren verwendet werden (siehe Tabelle \ref{tab:parametrisierung}). Des Weiteren ist die Implementierung des Protokolls und des Parsers bisher noch nicht umgesetzt.
+Der Parser sollte in der ISR des I\textsuperscript{2}C erfolgen. Die Parameterübetragung für den laufenden Betrieb sind in einer State-Maschine umzusetzen, um schnell auf Anweisungen des I\textsuperscript{2}C-Masters oder des Kraftreglers reagieren zu können.
+
+\begin{table}[!h]
+	\centering
+		\caption{Parameter der Motorsteuerung}
+		%\rowcolors{3}{gray}{yellow}
+		\begin{tabular}{L{4cm} | L{4cm}}
+			\textbf{Erstinbetriebnahme}					&		 \textbf{Parameter für den laufenden Betrieb}	\\ \hline
+														max. Drehzahl									&			Referenzfahrt								\\
+			\rowcolor[gray]{.8}		max. Strom										&			Drehzahl und Richtung				\\
+														Regelparameter $k_\text{i}$		&																	\\
+			\rowcolor[gray]{.8}		Regelparameter $k_\text{p}$		&																	\\			
+		\end{tabular}
+	\label{tab:parametrisierung}
+\end{table}
+
+Um die Parameter zu speichern, sollten diese nach der Übermittlung im EEPROM abgelegt werden. 
+Diese gespeicherten Werten stehen dann dem Master zur Abfrage zur Verfügung. Ebenfalls ist eine Übermittlung von Fehlern an den I\textsuperscript{2}C-Bus-Master umzusetzen. Die Motorsteuerung arbeitet in dem Bus als Slave und kann damit keinen Fehlerzustand senden. Das heißt, dass der Master zyklisch  den Status der Motorsteuerung abfragen muss.

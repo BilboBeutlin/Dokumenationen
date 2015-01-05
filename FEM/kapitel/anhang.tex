@@ -1,0 +1,65 @@
+%--------------------------------------------------------------------------------------
+% kapitel/anhang.tex
+%--------------------------------------------------------------------------------------
+\appendix
+\addtocontents{toc}{\protect\contentsline{chapter}{\appendixname}{}{}}
+%--------------------------------------------------------------------------------------
+% Anhang
+%--------------------------------------------------------------------------------------
+	\chapter{Motordrehung}
+		\begin{center}
+			\captionsetup{type=figure}
+			\subfloat[\textbf{Schritt 1}: A-GND, /A-VCC, B-GND, /B-VCC ]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_3.pdf_tex}}}
+			\quad
+			\subfloat[\textbf{Schritt 2}: A-VCC, /A-GND,  B-GND, /B-VCC]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_4.pdf_tex}}}
+			\\
+			\subfloat[\textbf{Schritt 3}: A-VCC, /A-GND, B-VCC, /B-GND]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_1.pdf_tex}}}
+			\quad
+			\subfloat[\textbf{Schritt 4}: A-GND, /A-VCC, B-VCC, /B-GND]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_2.pdf_tex}}}
+			\caption{Rotordrehung}
+			\label{fig:motordrehung_1}		
+		\end{center}
+		
+		
+\chapter{Dateiverzeichnis der CD}
+
+\begin{itemize}
+	\item	\textbf{Bachelorarbeit} \\
+	CD:\textbackslash	Bachelorarbeit.pdf
+	\item \textbf{C-Quellcode im AVR Studio 6} \\
+		CD:\textbackslash C-Quellcode AVR Studio 6\textbackslash StepControl\textbackslash StepControl.atsln
+	\item	\textbf{Schaltungsdesign und Leiterplattenlayout: Altium Designer 10} \\
+		CD:\textbackslash Schaltungsdesign, Leiterplattenlayout\textbackslash Schrittmotosteuerung\\
+				\textbackslash Schrittmotosteuerung.PrjPcb
+	\item	\textbf{Datenblätter:}\\
+		CD:\textbackslash Datenblätter\textbackslash 
+		\begin{itemize}
+			\item ADC Widerstand
+			\item Elektrolytkondensator
+			\item Linearregler
+			\item Logik-IC
+			\item Mikrocontroller
+			\item Pegelwandler
+			\item Quartz
+			\item	Schrittmotoren
+			\item Motortreiber
+		\end{itemize}
+\end{itemize}
+
+% Auch hier sind Gliederungen aller \chapter, \section
+%\chapter{Auflistung von Quellcode und ähnliches}
+%Eine Möglichkeit Quelltext aufzulisten.
+%
+%\lstinputlisting{listings/Hello.c}
+%%--------------------------------------------------------------------------------------
+%% firstline - Gibt die erste Zeile die dargestellez werden soll
+%% lastline - letzte Zeile die aus der Quelltextdatei entnohmen, und dargestellt werden soll
+%%--------------------------------------------------------------------------------------
+%Und eine, für den Anhang wahrscheinlich besser geeignetere Variante.
+%
+%\lstinputlisting[caption={Ein 'Hallo Welt' Programm},label=code:hello_world,backgroundcolor=\color{white},frame=single,]{listings/Hello.c}
+%
+%\chapter{Aufbau eines minimalen \LaTeX{}-Dokuments}
+%\lstinputlisting[breaklines=true,backgroundcolor=\color{white},numbers=none, language=TeX ]{listings/latex_example.tex}
+%% mit \lstinputlisting lassen sich ganze quelltext-dateien in ein LaTeX-Dokument einbinden
+%% die Optionen sind die gleichen wie bei \lstset

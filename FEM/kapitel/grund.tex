@@ -1,0 +1,279 @@
+\newpage
+\chapter{Grundlagen}
+%\renewcommand{\acronymname}{Abkürzungsverzeichnis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				Schrittmotor:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Schrittmotor}
+%Momentenwinkelkennlinie, Schrittwinkel plus Momentperiode
+Der Schrittmotor besteht, wie die meisten anderen elektrischen Motoren, aus einem Stator und einem Rotor. Die Funktionsweise ist anders als bei Gleichstrommotoren, diese entspricht einem zweiphasigen Synchronmotor und einem AC-Servomotor. Die Schrittmotoren teilen sich in drei Unterkategorien auf. Diese sind der Relukatanzschrittmotor, der \gls{pm}-Schrittmotor und eine Kombination aus beiden, dem sogenannten Hybrid-Schrittmotor.
+
+Der genaue Aufbau und die Funktionsweise des verwendeten Motor wird im Kapitel \ref{subsec:aufundfunk} beschrieben. Im folgenden Abschnitt werden die Unterschiede zwischen den verschieden Arten von Schrittmotoren erläutert.
+
+Der Rotor von Reluktanzmotoren besteht aus gezahntem Weicheisen, der Stator aus Elektromagneten.
+Diese Motoren nutzen das Prinzip der geringsten magnetischen Kapazität zur Erzeugung der Drehbewegung.
+Nachteil ist, dass im stromlosen Zustand kein Rastmoment erhalten bleibt und das Drehmoment geringer ist, als bei einem PM-Schrittmotor.
+
+Der \gls{pm}-Schrittmotor besitzt als Rotor einen Permanentmagnet und im Stator, wie der Reluktanzmotor, Elektromagnete (siehe Abbildung \ref{fig:PrinzipaufbauSM}). Im spannungsfreien Zustand bleibt ein Rastmoment erhalten. 
+
+Der Hybrid-Schrittmotor vereint die Eigenschaften beider Motorarten. Der Rotor besteht aus Permanentmagneten und besitzt zusätzlich einen Zahnkranz aus Weicheisen.
+
+%http://www.schrittmotor-blog.de/unipolar-oder-bipolar/
+
+Des Weiteren wird unterschieden zwischen unipolaren und bipolaren Ausführungen mit vier, sechs oder acht Anschlüssen.\\
+Reine unipolare Schrittmotoren besitzen 6 Anschlüsse. Zu einer Phase gehören jeweils drei Leitungen, eine zum Spuleneingang, eine zum Spulenausgang und eine zum Mittelabgriff.
+Der Vorteil von unipolaren Schrittmotoren ist, dass diese mit zwei halben H-Brücken angesteuert werden können. Nachteil ist, dass durch den Mittelabgriff nicht alle Wicklungen der Spule von einen Strom durchflossen werden und damit das Drehmoment geringer ist. Die Erklärung einer H-Brücke erfolgt im Kapitel 2.2 im Zusammenhang mit dem Motortreiber.
+
+Bei bipolaren Schrittmotoren existiert kein Spulenmittelabgriff, im Betrieb wird die gesamte Spule mit Strom durchflossen.
+Ein Nachteil ist, dass zwei H-Brücken für die Ansteuerung notwendig sind, was einen erhöhten Schaltungsaufwand zur Folge hat. Weiter sind bipolare Schrittmotoren auch mit acht Anschlüssen erhältlich. Diese ermöglichen auch einen unipolaren Betrieb. Es befinden sich insgesamt vier Phasen im Schrittmotor, die Anordnung entspricht dem eines \mbox{Zwei-Phasen-Schrittmotors}. Pro Phase sind zwei Anschlüsse vorgesehen, die eine serielle oder eine parallele Verschaltung ermöglichen. Ebenso ist die Konnektierung für einen unipolaren Betrieb möglich. Die serielle Beschaltung erhöht die Induktivität und ermöglicht bei kleinem Phasenstrom ein höheres Moment aber mit geringerer maximal Drehzahl. Die parallele Beschaltung ist für hohe Drehzahlen vorgesehen, die Induktivität sinkt aber der Strom muss, für das gleiche Haltemoment einer seriellen Verschaltung, doppelt so groß sein.
+
+Die wichtigsten Kenngrößen für Schrittmotoren sind in Tabelle \ref{tab:kenngoessren Schrittmotor} aufgelistet.
+
+\begin{table}[ht!]
+	\centering
+	\caption{Kenngrößen eines Schrittmotors (vgl. \cite{schoerlin:schrittmotoren})}
+		\begin{tabular}{l  p{6cm}}
+		\textbf{Kenngröße}										& \textbf{Erläuterung} 				\\\hline
+		Phasenzahl														&	gibt an wie viele Phasen ein Schrittmotor besitzt	\\
+		\rowcolor[gray]{.8}	Phasenstrom				&	ist der Strom einer Phase beim Nennmoment des Motors	\\
+		Schrittwinkel				&	Auflösung eines Motors ohne elektronische Zusatzmaßnahmen								\\
+		\rowcolor[gray]{.8}	Haltemoment				&			gibt das maximale Drehmoment einer Drehzahl von $0\,\frac{rad}{s}$ an	\\
+		maximale Drehmoment				&		gibt das maximale Drehmoment bei einer Drehzahl von $> 0\text{ }\frac{rad}{s}$ an	\\
+		\rowcolor[gray]{.8}  Wicklungswiderstand& beschreibt den ohmschen Widerstand einer Phase \\
+		Wicklungsinduktivität							&	beschreibt die Größe der Induktivität einer Phase	\\
+		\end{tabular}
+	%	\captionabove{Kenngrößen eines Schrittmotors \cite{schoerlin:schrittmotoren}}
+	\label{tab:kenngoessren Schrittmotor}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				Schrittmotor: Aufbau- und Funktion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Aufbau und Funktion} \label{subsec:aufundfunk}
+Wie oben beschrieben, bestehen \gls{pm}-Schrittmotoren aus einem Rotor und einem Stator. In Abbildung \ref{fig:PrinzipaufbauSM} ist ein prinzipieller Aufbau dargestellt. Im Stator befinden sich die Spulen zur Erzeugung des elektromagnetischen Feldes, wonach sich der Rotor ausrichtet. Im spannungslosem Zustand hat der Schrittmotor schon eine Vorzugsposition, in der die Dauermagneten mit den Statorspulen den magnetischen Kreis schließen. Dieses bestehende Drehmoment wird Rastmoment genannt.
+\begin{figure}[!ht]%
+			\centering
+			%\includegraphics[width=0.4\linewidth]{bilder/grafik_schrittmotor_2_1.pdf}
+			\input{bilder/grafik_schrittmotor_0.pdf_tex}
+			\caption{Prinzipaufbau eines zweiphasigen PM-Schrittmotors}
+			\label{fig:PrinzipaufbauSM}
+\end{figure}
+Wird die Spule von einem Strom durchflossen entsteht ein Magnetfeld, welches ein Nord- und Südpol ausbildet. 
+Nach diesem Feld richtet sich der Rotor aus und bewirkt das Haltemoment. 
+%\begin{figure}
+		%\centering
+		%\captionsetup{type=figure}
+		%\subfloat[\textbf{Schritt 1}: A-GND, /A-VCC, B-GND, /B-VCC ]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_3.pdf_tex}}}
+		%\quad
+		%\subfloat[\textbf{Schritt 2}: A-VCC, /A-GND,  B-GND, /B-VCC]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_4.pdf_tex}}}
+		%\\
+		%\subfloat[\textbf{Schritt 3}: A-VCC, /A-GND, B-VCC, /B-GND]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_1.pdf_tex}}}
+		%\quad
+		%\subfloat[\textbf{Schritt 4}: A-GND, /A-VCC, B-VCC, /B-GND]{\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_2.pdf_tex}}}
+		%\caption{Rotordrehung}
+		%\label{fig:motordrehung_1}		
+%\end{figure}
+%$\,$
+	%\captionsetup{type=figure}
+	%\begin{tabular}{c c}
+		%\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_3.pdf_tex}} &	\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_4.pdf_tex}}\\
+		%\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_1.pdf_tex}} &	\resizebox{0.45\textwidth}{!}{\input{bilder/grafik_schrittmotor_2.pdf_tex}}	
+	%\end{tabular}
+%\caption{Rotordrehung}%
+%\label{fig:motordrehung_1}%
+
+
+ 
+Im Anhang in Abbildung \ref{fig:motordrehung_1} ist eine Motordrehung im Uhrzeigersinn dargestellt.
+Werden die Spulen sukzessiv durchgeschalten, entsteht ein sich drehendes Magnetfeld.
+%Elektrische Schrittmotoren und -antriebe S.3
+Der Drehwinkel $\alpha$, den ein PM-Schrittmotor pro Schritt macht, hängt von der Anzahl der Polpaare $p$ ab
+$$ \alpha = \frac{360^\circ}{2\cdot p}. $$
+
+Die meisten \gls{pm}-Schrittmotoren besitzen 100 Polpaare und haben einen Schrittwinkel von $1,8^\circ$.
+Die Schrittauflösung ist durch die Polpaarzahl des Rotors begrenzt. In Abbildung \ref{fig:motordrehung_1} beträgt diese $90^\circ$.
+\newline
+
+Wichtige Eigenschaften von Schrittmotoren sind zum einen das Haltemoment und zum anderen das maximale Drehmoment sowie die maximale Drehzahl. Wenn bei einem Schrittmotor die Spulen permanent unter Spannung stehen, entsteht keine Drehbewegung. Die Permanentmagnete richten sich dem Magnetfeld aus und verbleiben in dieser Position. Wird jetzt an der Motorwelle ein Drehmoment angelegt, hält die Welle so lange ihre Position bis das Drehmoment das maximale Haltemoment $M_{\text{max}}$ übersteigt und der Rotor sich schlagartig dreht. Kurz vor dem Zeitpunkt der Schrittausführung entspricht das Lastmoment dem maximalen Haltemoment $M_{\text{halt}}$. Dieser Zusammenhang ist auch in Abbildung \ref{graf:momentenwinkel} zu sehen.
+\\
+%\begin{figure}[!ht]%
+			%\centering
+			%\includegraphics[width=0.7\linewidth]{bilder/momentenwinkelkennlinie.pdf}
+			%\caption{Haltemomentenkennlinie}
+			%\label{graf:momentenwinkel}
+%\end{figure} %Mit Schrittmotoren steuern, regeln und antreibe. 10.2 Schrittwinkelgenauikeit S. 92, Elektrische Schrittmotoren, RummichS. 249
+$\;$
+\begin{figure}[h!]%Quelle: LT-Spice
+			\centering
+			\input{bilder/momentenwinkelkennlinie1.pdf_tex}
+			\caption{Haltemomenten-Kennlinie}%
+			\label{graf:momentenwinkel}%
+\end{figure}
+\\Das Drehmoment hingegen ist von der Drehzahl des Motors abhängig. Es ist meist kleiner als das Haltemoment und sinkt mit steigender Drehzahl. In Abbildung \ref{graf:drehmomentenkennlinie} ist beispielhaft eine Drehmomenten-Kennlinie dargestellt.
+\begin{figure}[!ht]%
+			\centering
+			%\includegraphics[width=0.5\linewidth]{bilder/drehmomentenkennlinie.pdf}
+			\input{bilder/drehmomentenkennlinie.pdf_tex}
+			\caption{Drehmoment-Kennlinie}
+			\label{graf:drehmomentenkennlinie}
+\end{figure}
+$\;$
+\\Ein zusätzlicher Zusammenhang zwischen Dreh- und Haltemoment ist der Schritt-winkelfehler. Angenommen im Arbeitspunkt beträgt das anliegende Lastmoment 40\% des Haltemomentes, so entsteht der Schrittwinkelfehler $\varphi_{40}$, der je nach Drehrichtung positiv oder negativ ist (siehe Abbildung \ref{graf:momentenwinkel}).
+%Mit Schrittmotoren steuern, regeln und antreibe. 10.2 Schrittwinkelgenauikeit S. 92, Elektrische Schrittmotoren, RummichS. 249
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				Schrittmotor: Ansteuerung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Ansteuerung} \label{sec:MAnsteuerung}
+%Germa Müller.S654
+Ein Schrittmotor kann nicht selbständig an einer Spannungsversorgung betrieben werden. Er muss immer über eine elektronische Schaltung gesteuert werden.
+Ein Schrittmotor hat den Vorteil, dass ein Eingangsimpuls äquivalent einem Schritt einspricht. Dies begünstigt vor allem die Ansteuerung durch Mikrocontroller und Logikgatter.
+Die einfachste Ansteuerung ist das schrittweise Durchschalten der Phasen, was dem Vollschrittbetrieb entspricht. In Tabelle \ref{tab:Vollschritt_Phasepegel} sind die Phasen-Pegel für die Rotordrehung der Abbbilung im Anhang \ref{fig:motordrehung_1}  dargestellt.
+\begin{table}[h!]
+	\centering
+		\begin{tabular}{c c c c c} 
+	\textbf{Schritt}			& 	\textbf{A}	& \textbf{/A} 	& \textbf{B}		& \textbf{/B} 	\\ \hline 
+ 0		&	H	& L		& H		& L 	\\\rowcolor[gray]{.8}
+ 1		&	L	& H		& H		& L		\\
+ 2		& L	& H		& L		& H		\\\rowcolor[gray]{.8}
+ 3		&	H	& L		& L		& H 	\\
+		\end{tabular}
+		\caption{Phasen-Pegel im Vollschrittbetrieb; H-High (VCC), L-Low (GND)}
+		\label{tab:Vollschritt_Phasepegel}
+\end{table}
+
+Neben dem Vollschrittbetrieb existiert noch der Halbschrittbetrieb, der ebenfalls ohne viel Aufwand in der Ansteuerung realisiert werden kann (siehe Tabelle \ref{tab:Halbschritt_Phasepegel}).
+\begin{table}[h!]
+	\centering
+		\begin{tabular}{c c c c c} 
+\textbf{Schritt}			& 	\textbf{A}	& \textbf{/A} 	& \textbf{B}		& \textbf{/B} 	\\ \hline
+0		&	H	& L		& H		& L 	\\  \rowcolor[gray]{.8}
+1		&	L	& L		& H		& L		\\
+2		& L	& H		& H		& L		\\\rowcolor[gray]{.8}
+3		&	L	& H		& L		& L 	\\
+4		& L & H   & L   & H		\\\rowcolor[gray]{.8}
+5		& L & L   & L   & H		\\
+6   & H & L   & L   & H   \\\rowcolor[gray]{.8}
+7   & H & L   & L   & L   \\
+		\end{tabular}
+		\caption{Phasen-Pegel im Halbschrittbetrieb; H-High, L-Low}
+		\label{tab:Halbschritt_Phasepegel}
+\end{table}
+$\;$\\
+Es existieren noch weitere Unterteilungen des Schrittwinkels: Viertel-, Achtel-, Sechzehntel- und bis zu Vierundsechzehntel-Schrittbetrieb. Diese Modi sind dann nur über die Anpassung des Phasenstroms realisierbar und entsprechen dem AC-Servoprinzip.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				Motor-Treiber
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motortreiber}
+Der Motortreiber ist der Leistungsverstärker in einer Schrittmotorsteuerung und befindet sich zwischen Motor und Ansteuerlogik. Je nach verwendetem Motor sind zwei oder mehr elektronische Schalter (Bipolar-Transistoren, MOSFET oder IGBT) notwendig. Am Messaufbau werden bipolare \gls{pm}-Schrittmotoren verwendet. Das heißt, es werden zwei H-Brücken mit je vier MOSFETs benötigt. In Abbildung \ref{fig:MotorMosfet} sind zwei Vollbrücken mit zwei Motorwicklungen dargestellt. 
+\begin{figure}[!ht]%Quelle: LT-Spice
+			\centering
+			%\includegraphics[width=1\linewidth]{bilder/grafik_mosfet_schrittmotor_0.pdf}
+			\input{bilder/grafik_mosfet_schrittmotor_0.pdf_tex}
+			\caption{MOSFET-Endstufe mit Motorwicklung}
+			\label{fig:MotorMosfet}
+\end{figure}
+
+Wenn ein Schrittmotor angesteuert wird, werden die MOSFETs so durchgeschaltet, dass sich die Phasenpegel nach Tabelle \ref{tab:Vollschritt_Phasepegel} oder \ref{tab:Halbschritt_Phasepegel} ergeben. 
+Beim Übergang zwischen den Schritten befinden sich noch Ladungsträger im Gate der FETs. Erfolgt das Umschalten zu schnell, wird die Versorgungsspannung PVDD mit Masse kurzgeschlossen und die MOSFETs übertreten ihre maximale Verlustleistung.
+
+Um den Ladungsträgerabbau gewährleisten zu können, ist eine Umschaltzeit einzuplanen. Hier für eignen sich MOSFET-Treiber. Die in der Abbildung \ref{fig:bootstrap} gezeichnete Halbbrücke besteht aus N-Kanal-MOSFETs (Q1, Q2). Diese werden leitend, wenn die Gate-Source-Spannung positiv ist.  P-Kanal-Mosfets sperren bei positiver Gate-Source-Spannung. Die in der Schaltung verwendeten MOSFETs sind vom Anreicherungstyp, das Bedeutet, dass sie selbst sperrend sind. Ebenso existieren MOSFETs die selbstleitend sind, diese werden Verarmungstyp genannt. Diese unterschiedliche Eigenschaft wird durch eine zusätzliche Dotierung des Bereiches zwischen Drain und Source realisiert. Die verwendeten N-Kanal-MOSFETs haben den Vorteil, dass sie durch ihre Elektronenleitung (bei gleichen Belastungseigenschaften) geometrisch kleiner sind als P-Kanal-MOSFETs. Weiterhin verfügen zwei baugleiche N-Kanal MOSFETs über identische Schaltzeiten und besitzen einen geringeren Übergangswiderstand zwischen Drain und Source, was kleinere Leckströme beim Umschalten zur Folge hat. P-Kanal MOSFETs weisen durch ihre größeren Übergangswiderstände höhere Schaltzeiten und damit auch erhöhte Leckströme auf.
+
+Der MOSFET Q1 besitzt am Source-Eingang kein definiertes Potential um eine ausreichende hohe Gate-Source-Spannung zu erzeugen die den MOSFET durchsteuert. Also Lösung wird eine Bootstrap-Schaltung verwendet. Diese erhöht den Pegel der Gate-Spannung über die Versorgungsspannung hinaus \cite{schlienz:schlatnetzteile}.
+Die Bootstrap-Schaltung erfolgt durch hinzufügen einer Diode (D1) und einem Kondensator (C1) am MOSFET-Treiber (siehe Abbildung \ref{fig:bootstrap}).
+\begin{figure}[!ht]%Quelle: LT-Spice
+			\centering
+			\includegraphics[width=0.76\linewidth]{bilder/LTC4449_1.pdf}
+			\caption{Halbbrücke mit MOSFET-Treiber und Bootstrap-Schaltung in LT-Spice (vgl. \cite{LT:Datasheet})}
+			\label{fig:bootstrap}
+\end{figure}
+Im Einschaltmoment lädt sich der Kondensator (C2) über die Diode (D1) auf die Spannung V1-U$_{\text{D1}}$ auf. Sobald der erste Impuls des PWM-Signals von V2 den MOSFET (Q1) einschaltet, liegt am Ausgang (TS) die Versorgungsspannung von V3 an. Die Spannung am Boost-Eingang beträgt dann die Summe aus der Spannungsversorgung für den MOSFET-Treiber und der Spannung für den MOSFET (V1 - U$_{\text{D1}}$ + V3). Durch die Spannungserhöhung am Boost-Eingang wird der TG-Ausgang, durch interne Verschaltung, ebenfalls auf die Spannung angehoben und der MOSFET wird mit erhöhter Gatespannung gesteuert, was einer ausreichend hohe Gate-Source-Spannung entspricht.
+\cite{EI:Bootstrap}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				Buck-Converter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Buck-Converter}\label{sec:buckconvert}
+Der Buck-Converter oder auch Step-Down-Wandler genannt, wird benutzt um aus einer höheren Gleichspannung eine niedrigere zu erzeugen. Normale Linearregler wandeln die überschüssige Energie in Wärme um, was einen geringen Wirkungsgrad zur Folge hat. Buck-Converter speichern diese Energie in einer Spule zwischen und geben sie zu einem späteren Zeitpunkt wieder ab. Der Wirkungsgrad von Buck-Convertern liegt zwischen $75\%$ und $95\%$.
+
+\begin{figure}[!ht]%Quelle: LT-Spice
+			\centering
+			%\includegraphics[width=0.8\linewidth]{bilder/buck_converter_1.pdf}
+			\input{bilder/buck_converter_2.pdf_tex}
+			\caption{prinzipielle Schaltung eines Buck-Converters (vgl. \cite{schlienz:schlatnetzteile}, S. 13)}
+			\label{fig:bootstrap1}
+\end{figure}
+
+In Abbildung \ref{fig:bootstrap1} ist eine prinzipielle Step-Down-Schaltung dargestellt.  Bei geschlossenem Schalter S1 fließt durch die Spule ein Strom, der ansteigt und den Kondensator C1 auflädt. Die Ausgangsspannung über R1  entspricht der Spannung an C1. Wird nun die Eingangsspannung Null (S1 offen), wird die Diode leitend und die in der Spule und im Kondensator gespeicherte Energie kann an den Lastwiderstand abgegeben werden. Wenn die Energie in der Ausschaltphase nicht Null wird und vorher eine neue Einschaltphase beginnt, spricht man von Continous-Mode (kontinuierlichem Betrieb). Wird die Energie Null, so ist das der Discontinous-Mode (Lückenbetrieb). Die Größe der Ausgangsspannung kann mit Hilfe des Tastverhältnisses zwischen Ein- und Ausschaltzeit eingestellt werden.
+Mit Hilfe der Schaltfrequenz wird das Schwingen und die Überschwinghöhe eingestellt. Typische Schaltfrequenzen liegen zwischen $15\text{ kHz}$ und $300\text{ kHz}$, die untere Frequenzgrenze wird vor allem durch die Hörschwelle des Menschen definiert. Die obere Frequenz wird durch die Schaltverluste begrenzt \cite{schlienz:schlatnetzteile}.
+
+
+%Low less ohne Induktivitäten
+
+%ttps://infotip-iss.de/ISS1.EXE?Sp=1&Typ=LoadKompendium&Page=2000_Knowledge_Base/2500_Schaltungstechnik/2520_NETZTEILSCHALTUNGEN/2520_SCHALTNETZTEILE/2520_SCHALTNETZTEILE_CONT/2525_Downconverter.htm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				I2C- TWI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%http://www.timmermann.org/ralph/index.htm?http://www.ralph.timmermann.org/elektronik/i2c.htm
+\section{I$^2$C}
+I$^2$C ist eine serielle Schnittstelle, welche zur Kommunikation zwischen einzelnen Elektronikbauteilen im Jahr 1982 von Philips entwickelt wurde. Wie alle seriellen Bussysteme sollte diese den Bedrahtungsaufwand minimieren. Der Bus benötigt zwei Leitungen, eine Datenleitung (SDA -  serial data) und eine Taktleitung (SCL -  serial clock). Für die Hardware-Realisierung benötigt jede Leitung einen Pull-Up-Widerstand ($\text{R}1$ und $\text{R}2$). Die Datenleitungen arbeiten bidirektional, wenn keine Kommunikation stattfindet ist der Bus logisch HIGH. Die Ausgänge der Slaves müssen Open-Collektor oder Open-Drain (Collektor bzw. Drain Anschluss ist offen), um die eine logische UND-Verknüfpung zu gewährleisten.
+Es können bis zu 128 Teilnehmer angeschlossen werden (siehe Abbildung \ref{fig:i2c_bus_1}).
+
+\begin{figure}[!ht]%Quelle: LT-Spice
+			\centering
+			\input{bilder/I2C_Connection_1.pdf_tex}
+			\caption{Beschaltung der Busteilnehmer (vgl. \cite{Atmel:Datasheet}, S. 207 )}
+			\label{fig:i2c_bus_1}
+\end{figure}
+
+Eine Kommunikation findet immer zwischen einem Master und einem Slave. Der Master beginnt den Datenaustausch über eine sogenannte START-Condition und beendet ihn mit einer STOP-Condition. Für die Initiierung der Zustände muss die Taktleitung (SCL) logisch HIGH sein. Wenn vom Master die START-Condition initiiert wird, wechselt der Pegel der Datenleitung von HIGH auf LOW und die Slaves vergleichen die vom Master angeforderte Slaveadresse mit ihrer Adresse. Stimmt diese überein, werden die nachfolgenden Daten entgegen genommen oder an den Master gesendet. Ist die Datenübertragung erfolgreich, wird die STOP-Condition ausgelöst. Durch das direkte Ansprechen eines Masters auf einen Slave, durch die definierte Slaveadresse, kann eine Buskollision der Slaves ausgeschlossen werden.
+\begin{figure}[!ht]%Quelle: LT-Spice
+			\centering
+			\input{bilder/I2C_start_stop.pdf_tex}
+			\caption{Zustände der Leitungen für START- und STOP-Condition, (vgl. \cite{NXP:I2C}, S. 10)}
+			\label{fig:i2c_bus_2}
+\end{figure}
+
+Das Adresspaket enthält die 7 Bit Slaveadresse und ein READ oder WRITE Bit. Das Ganze wird mit SLA+R/W abgekürzt (siehe Tabelle \ref{tab:Adressbits}). Das Datenpaket beinhaltet die zu sendenden Informationen (siehe Tabelle \ref{tab:Datenbits}). Ein Acknowledge-Bit (Bestätigung) ist in beiden Paketen reserviert. Dieses Bit ermöglicht es dem Empfänger einen erfolgreichen Empfang dem Sender mitzuteilen oder diesem zum erneuten Senden von fehlgeschlagenen Nachrichten zu veranlassen.
+\begin{table}[h!]
+		\centering
+		\caption{Adressbits, mit R/W und Acknowledge (vgl. \cite{Atmel:Datasheet}, S. 209)}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c}
+			\multicolumn{6}{c}{\textbf{SLA+R/W }}	\\\hline
+			Addr MSB 	& 		& 	&Addr LSB 	&R/W 	&ACK 	\\\hline
+			1 	&2 	&... 	&7 	&8 	&9  	 \\\hline	
+		\end{tabular}
+		\label{tab:Adressbits}
+\end{table}%
+\begin{table}[h!]
+	\centering
+	\caption{Datenbits mit Acknowledge (vgl. \cite{Atmel:Datasheet}, S. 209)}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c}
+			\multicolumn{5}{c}{\textbf{Data+R/W }}	\\\hline
+			Data MSB 	& 		& 	& Data LSB	&ACK	\\\hline
+			1 	&2 	&... 	&7 	&8   \\\hline	 	
+	\end{tabular}
+\label{tab:Datenbits}
+\end{table}%
+
+Die Taktrate für den \gls{i2c}-Bus ist bei dem verwendeten Atmel Controller auf maximal $400\text{ kHz}$ begrenzt. Für den \gls{i2c}-Bus sind folgenden Taktraten spezifiziert:
+%Siehe Datenblatte S. 210
+\begin{table}[h!]
+\centering
+\caption{standardisierte Taktraten für den \gls{i2c}-Bus (vgl. \cite{NXP:I2C}, S. 35)}
+\begin{tabular}{cc}
+\textbf{Modus}	& \textbf{Geschwindigkeit}\\\hline
+Standard Mode 	&	 100 kBit/s \\\rowcolor[gray]{.8}
+Fast Mode				& 400 kBit/s 	\\
+Fast Mode+			& 1 MBit/s   	\\\rowcolor[gray]{.8}
+High Speed Mode & 3,4 MBit/s 	\\
+Ultra Fast Mode & 5 MBit/s	
+\end{tabular}
+\label{tab:taktrate}
+\end{table}%
+
+%http://www.elektronik-magazin.de/page/der-i2c-bus-was-ist-das-21

@@ -1,0 +1,68 @@
+%-----------------------------------------------------------------------------
+% kapitel/auswertung.tex
+%-----------------------------------------------------------------------------
+\chapter{Auswertung}
+Im folgenden Kapitel wird die umgesetzte Stromregelung für den Schrittmotor untersucht. Bei der ersten Inbetriebnahme ist auf gefallen, dass die gewandelten Messwerte des ADCs Schwankungen von bis zu 150 Digits unterworfen waren.
+Zur Untersuchung welche Spannungen der ADC misst, wird mit dem Oszilloskop die Spannungen am Shunt aufgenommen (siehe Abbildung \ref{graf:messignal}). Gleichzeitig werden die vom ADC gewandelten Werte i(n) betrachtet (siehe Tabelle \ref{tab:adcmess}). Alle negativen Spannungen werden vom ADC mit einer Null ausgegeben, diese Spannungen werden nicht mit aufgelesistet. 
+
+
+\begin{table}[!h]
+\begin{center}
+	\caption{Messwerte des ADC zwei Schritte}
+		%\rowcolors{3}{gray}{yellow}
+		\begin{tabular}{R{0.5cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.4cm} | R{0.5cm} | R{0.5cm} | R{0.5cm} | R{0.5cm} }
+			n&0&1&2&3&4&5&6&7&8&9&10&11&12&13 						\\ \hline
+			i(n)&0&1&6&7&8&12&14&15&15&17&24&24&30&31 		\\ 
+			\multicolumn{15}{c}{}													\\
+			n&14&15&16&17&18&19&20&21&22&23&24&25&26&27 	\\ \hline
+			i(n)&35&48&48&56&62&63&72&79&96&97&112&120&128&142
+		\end{tabular}
+	\label{tab:adcmess}
+\end{center}
+\end{table}
+
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{bilder/strom2.pdf}
+	\captionsetup{type=figure}
+	\caption{Oszillogramm: Messsignale für jeweils einer Phase am Shunt}%
+	\label{graf:messignal}%
+\end{center}
+
+Die Grafik zeigt die Spannungswerte an den Messwiderständen. Eine Periode beinhalten die Abfolge von vier Schritten. Folgend wird die Schrittfolge und deren Ströme an der Abbildung \ref{graf:messignal}  erläutert. Ein Schritt beginnt, wenn eines der Signale orange oder violett ins Negative springt. Das violette Signal steigt an und geht in den positiven Bereich. Das orange Signal erhält einen negativen Sprung, ein weiterer Schritt startet. Das violette Signal steigt dabei weiter bis zu einem Maximum von ca. $670\,\text{mV}$ an und springt dann ins Negative auf ca. $620\,\text{mV}$. Die negativen Anteile sind für den ADC nicht sinnvoll auswertbar, da nur positive Spannungen gewandelt werden können. Ebenfalls ist das Signalverhalten aus Abbildung \ref{graf:messignal} in den ansteigenden Werten in der Tabelle \ref{tab:adcmess} ersichtlich. Diese schwankenden Werte sind Ursache für eine schwingende Regelung bzw. die Schwankung des Tastverhältnisses der PWM.
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{bilder/strom3.pdf}
+	\captionsetup{type=figure}
+	\caption{	Oszillogramm: Stromproportionales Spannungssignal am Shunt (orange), Phasenstrom (grün)
+						%orange: Messignal am Shunt \\
+						%grün: 	Strom direkt an einer Phase
+				}
+	\label{graf:messignal2}%
+\end{center}
+
+Um zu überprüfen, ob die gemessenen Spannungen der Realität entsprechen, wird mit einer Stromzange der Phasenstrom direkt an der Zuleitung zum Motor gemessen.
+In Abbildung \ref{graf:messignal2} ist der hiermit ermittelte Phasenstrom grün dargestellt, gelb entspricht dem Messsignal am Shunt. Der erste Periodenteil liegt genau übereinander, der Zweite ist genau invertiert. Die Ursache der Invertierung ist, dass der Phasenstrom je nach Schritt die Spule in unterschiedliche Richtungen fließt. Das Signal am Messwiderstand hat, wie auch das Signal des Phasenstroms, positive und negative Anteile. Die negativen Anteile werden auch durch die Umschaltung der Spule hervorgerufen. Bei einem Wechsel von einem Schritt auf den Nächsten muss die gespeicherte Energie in der Spule abgebaut werden. Die abzubauende Spannung ist invertiert zu dem neuen Spannungssignal deshalb fließt ein Strom in die andere Richtung.
+
+Wie in der Einleitung zur Auswertung beschrieben, schwingt die Stromregelung auf Grund des oben beschrieben Stromflusses. Um die Auswirkungen dieser Schwankungen zu Unterdrücken wird eine Mittelwertbildung eingesetzt. Folgend wird die Mittelwertbildung an Abbildung \ref{graf:gmw} erklärt.
+
+\begin{wrapfigure}{r}{7cm}	
+		\input{bilder/gmw1.pdf_tex}
+		\captionsetup{type=figure}
+		\caption{Schema der Mittelwertbildung mit 5 Elementen}
+		\label{graf:gmw}	
+\end{wrapfigure}
+
+Der aktuelle Messwert wird in einem Array abgespeichert. Aus diesem Array wird die Summe gebildet und mit aktuellem 
+Messwert addiert. Zusätzlich wird der alte Messwert der vorher an der Stelle des aktuellem Messwertes steht subtrahiert. 
+Das Ergebnis der Summe und der Subtraktion wird durch die Anzahl der gemessenen Werte dividiert. Die Anzahl der Werte, die zur Mittelwertbildung herangezogen werden beträgt 255.
+Jeder neue ADC-Wert wird eine Position weiter im Array Abgespeichert
+
+Wird die Schrittmotorsteuerung ohne Stromregelung betrieben, nimmt der Motor nur so viel Strom auf wie er benötigt und wie das zuvor eingestellte Tastverhältnis maximal zur Verfügung stellen kann. Das heißt, der Motor würde auch im Überlastbetrieb arbeiten. Die Stromregelung soll diesen Überlastbetrieb verhindern und gleichzeitig den Strombegrenzen. Das heißt, dass die Kraftregelung nicht nur die beschrieben Parameter für den laufenden Betrieb (siehe Tabelle \ref{tab:parametrisierung}) der Schrittmotorsteuerung übergibt. Je nach benötigter Kraft muss der Soll-Wert des Stromes angepasst werden. Konkret bedeutet das, dass ein zuvor eingestellter Maximalstrom für den der Motor laut Datenblatt ausgelegt ist, nicht im lastfreien Betrieb anliegen soll.
+
+%\begin{center}
+	%\includegraphics[width=0.6\textwidth]{bilder/pcb3d.pdf}
+	%\captionsetup{type=figure}
+	%\caption{orange: Messignal am Shunt,\\ grün: Strom direkt an einer Phase}%
+	%\label{graf:messignal2}%
+%\end{center}

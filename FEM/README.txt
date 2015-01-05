@@ -1,0 +1,14 @@
+Änderungen:
+- neue verzeichnisstruktur
+- header Datei eingefügt
+- Konstanten für Verfasser, Geburtstag, Geburtsort und Titel eingefügt. Damit ist Änderungen auf der Titelseite und in den Metadaten nicht mehr nötig.
+- Verwendung des Packages geometry um die Ränder einzurichten
+- Abbildung in Bild umbenannt
+- Literaturverzeichnis auf BibTeX umgestellt, nach DIN 1505
+- Package glossary eingebunden um Abbildungsverzeichnis zu erstellen. In abkürzungen.tex werden die Abkürzungen verwaltet
+- Package fancyhdr zur Gestaltung der Kopf- und Fußzeilen eingefügt
+- neue Titelseite erstellt
+- Verzeichnisse einzeilig
+- Quellcodelistings Syntaxhervorhebung hinzugefügt, Caption und Label hinzugefügt um darauf Verweisen zu können
+- Korrektur in der Selbstständigkeitserklärung einschließlich Kopfzeile
+- Logo der Fakultät in hochwertigerr Auflösung

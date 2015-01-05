@@ -1,0 +1,60 @@
+\chapter{Aufgabenstellung}
+Im Rahmen eines Projektes wurde ein Aufbau generiert, der eine Dehnungsmessung, an einem Implantat für Knochenbrüche möglich macht. In Abbildung \ref{fig:Messaufbau} ist dieser Messaufbau zusehen. Das Implantat, wird in dem  Aufbau eingespannt und mittels eines Linearantriebes und einem Schrittmotor kontrolliert elastisch Verformt.
+Durch eine Vierleitermessung mit vier Dehnungsmessstreifen am Implantat wird die  Verformung ermittelt. Eine Messschaltung und ein entwickelter Regelalgorithmus begrenzt die Schrittmotorsteuerung und verhindert eine plastische Verformung. In Abbildung \ref{graf:Invormationsverlauf_Messaufbau} ist eine Übersicht über den Informationsverlauf der verschiedenen Abschnitte dargestellt. In der vorliegenden Arbeit wird die Entwicklung und der Aufbau der Schrittmotorsteuerung behandelt.
+
+	
+	
+	
+	
+	\begin{minipage}[t]{0.5\textwidth}
+		\centering 
+		%\def\svgwidth{200pt}
+		\includegraphics[width=1\linewidth]{bilder/grafik_messaufbau.pdf}
+		%	\includegraphics{bilder/messstand_biegebalken}
+			\captionof{figure}{Informationsverlauf \\ des Messaufbaus}
+		\end{minipage}
+		\begin{minipage}[t]{0.5\textwidth}
+				\includegraphics[width=1\linewidth]{bilder/messstandbiegebalken}
+				\label{fig:Messaufbau}
+				\captionof{figure}{Computergrafik\\ des Messstandes}
+		\end{minipage}
+		
+		\begin{minipage}[t]{0.5\textwidth}
+			%\def\svgwidth{200pt}
+			\def\svgscale{0.5} 
+			\input{bilder/grafik_messaufbau_ink.pdf_tex}
+			\label{graf:Invormationsverlauf_Messaufbau}
+			\captionof{figure}{Informationsverlauf des Messtandes}
+		\end{minipage}
+
+%\begin{picture}
+    %\put(0,0){\includegraphics[width=\unitlength]{bilder/grafik_messaufbau_ink.pdf}}%
+ %\end{picture}%
+
+\section{Antrieb}
+Um eine geringe Leistungsaufnahme sicherzustellen, werden sowohl für die horizontale als auch für die vertikale Richtung eine Kombination aus einem Schrittmotor und einem Linearantrieb verwendet. In Tabelle \ref{tab:Motoreigenschaften} werden die Eigenschaften der Schrittmotoren gegenübergestellt.
+
+\begin{table}
+	\centering
+		\begin{tabular}{r l l } 
+													& Motor 1 							& Motor 2 \\
+													& (verteikale Richtung) & (horizonzale Richtung)  \\ \hline
+		Impedanz/Phase				& 	$ 0,63 \; \Omega$		&	$ 20\;\Omega$			\\  
+		 \rowcolor[gray]{.8}										Induktivität/Phase		& 	$ 1,7 \; mH$				& $ 38\;mH$			\\
+		max. Strom/Phase  		&  	$ 4,72 \; A$						& $ 0,6 \; A $  \\ % inserting body of the table 
+		 \rowcolor[gray]{.8}Spannung 							&  											& $ 12 \;V $   \\ 
+		Haltemoment 					&  	$1,7 \; Nm$					& $ 0,59 \; Nm$    \\  % [1ex] adds vertical space
+		\end{tabular}
+	\caption{Motoreigenschaften}
+	\label{tab:Motoreigenschaften}
+\end{table}
+
+
+\section{Kommunikation}
+Der Messaufbau besteht aus drei Teilbereichen, aus der Messchaltung, der Motorsteuerung und dem Kraftregler. Um einen Datenaustausch gewährleisten zu können, wurde eine Kommunikation über einen $I^2C$ Datenbus festgelegt. Der Kraftregler ist eine reine Softwareimplementation, die Entscheidung ob er in einen eigenen Mikrocontroller untergebracht wird oder in der Motorsteuerung mit eingebettet wird, wird bei einer Laufzeitüberprüfung der.....
+
+
+
+
+\section{Kommunikation - I$^2$C }
+

@@ -1,0 +1,156 @@
+\chapter{Hardware-Realisierung}
+\label{chpt:hardwarerealisierung}
+Für die Hardwarerealisierung sind verschiedenen Bedingungen zu beachten. Zum einen muss die Kompatibilität zur Messplatine gewährleistet, zum anderen die Leistungskenndaten der Schrittmotoren und die verfügbare Spannungsversorgung berücksichtigt werden.
+Weil zwei unterschiedliche Motoren zur Verfügung stehen, werden nur die Kenndaten mit den höheren Leistungskenndaten berücksichtigt. Die Steuerung kann dann auch für den anderen Motor verwendet werden.
+%%%%%%%%%%%%%%%%%%
+% Mikrocontroller
+%%%%%%%%%%%%%%%%%%
+\section{Mikrocontroller}
+In der vorliegenden Messplatine für die Dehnungsmessstreifen, befindet sich ein \gls{avr} ATMega 8-Bit Mikrocontroller der Firma Atmel. Daher liegt es nahe, auch für die Schrittmotorsteuerung einen solchen Controller zu verwenden.
+Für die Schrittmotorsteuerung werden neben der I\textsuperscript{2}C-Schnittstelle zur Kommunikation auch zwei Timer benötigt. Die Steuerung des Treiber-ICs erfordert sechs Input-Out-Pins (IO-Pins), für die geplante Stromregelung müssen zwei Analog-Digital-Converter-Kanäle (ADC-Kanäle) eingeplant werden. Zur Programmierung sollte eine integrierte Entwicklungsumgebung (IDE) und ein Programmiergerät zur Verfügung stehen. 
+
+Ein \gls{arm}-Controller wäre für diese Aufgabe auch geeignet. Sehr viele Hersteller produzieren \gls{arm}-Controller und damit auch ihre eigenen Besonderheiten. Der ARM-Controller verfügtin der Regel über einen größeren Speicher, mehr Peripherie und mehr Rechenleistung. Für die Schrittmotorsteuerung ist keine hohe Komplexität zu erwarten und des Weiteren ist die Einarbeitung in die Architektur sehr zeitaufwendig, daher wird auf einn \gls{avr}-Controller zurück gegriffen. Hier liegt ein breites Spektrum von Atmel vor. 
+
+
+Eine weitere wichtige Anforderung ist das Vorhanden sein einer Programmierschnittstelle und eines geeigneten Programmier- und Debugwerkzeuges. Für Atmel-Mikrocontroller ist dafür die \gls{jtag}-Schnittstelle oder ein \gls{isp}-Programmer notwendig. In Tabelle \ref{tab:GegenüberstellungMindesanforderungen} ist ein Vergleich zwischen den Mindestanforderungen und einer kleinen Auswahl an Mikrocontrollern dargestellt. Die Übersicht zeigt recht deutlich, dass für die Motorsteuerung theoretisch auch einer der bekanntesten Mikrocontroller von Atmel, der ATMega8, ausreichen würde. Auf Grund von Sammelbestellungen und dem Vorliegen eines In-System-Debuggers wird der angegebene ATMega324P verwendet.
+\begin{table}
+	\centering
+		\caption{Mindestanforderungen und Eigenschaften der Mikrocontroller}
+		\begin{tabular}{c c c c c}
+		\textbf{Eigenschaften}	& \textbf{Anforderung} & \textbf{ATmega324P} 	 					&\textbf{ATmega8}	\\\hline
+	IO-Pins							&				9			&			32								&	23 			\\
+\rowcolor[gray]{.8}	I\textsuperscript{2}C		&			1		&			1									& 1  			\\
+	ADC-Kanäle							&				2			&			8							& 8				\\
+\rowcolor[gray]{.8}	Timer											&			2			&   3											&	3				\\
+ 	Spannungsversorgung				&		$5 \, \mathrm{V}$	&		$1,8\, \mathrm{V} - 5,5\, \mathrm{V}$	&$2,7\, \mathrm{V} - 5{,}5\, \mathrm{V}$ \\
+\rowcolor[gray]{.8}  Programmierschnittstelle				&JTAG &	JTAG	&    ISP        \\
+			\end{tabular}
+	\label{tab:GegenüberstellungMindesanforderungen}
+\end{table}
+%%%%%%%%%%%%%%%%%%
+% H-Brücke
+%%%%%%%%%%%%%%%%%%
+\section{H-Brücke} \label{ch:hbrucke}
+Wie in der Einleitung zu Kapitel \ref{chpt:hardwarerealisierung} beschrieben, wird die Schrittmotorsteuerung für die horizontale Fahrrichtung (Motor 1, siehe Tabelle \ref{tab:Motoreigenschaften}) dimensioniert.
+Relevant ist hier der maximale Strom von $ 4{,}2 \, \mathrm{A} $ bei einer Spannung von $ 2{,}1 \; \text{V} $ (nach Rechnung (\ref{eq:phasenstrom}))
+\begin{equation}
+	U_{\text{Phase}}= 4{,}2 \, \mathrm{A} \cdot 0{,}5 \; \Omega = 2{,}1 \; \text{V}.
+\label{eq:phasenstrom}
+\end{equation}
+Zur Energieversorgung stehen $24 \, \mathrm{V}$ und maximal $1 \, \mathrm{A}$ zur Verfügung. Das heißt, dass eine Stromregelung nach dem Buck-Converter-Prinzip am Motortreiber umgesetzt wird. Um für andere Anwendungen später eine Steuerung zur Verfügung zu haben, sollte der Motor-Treiber (H-Brücke) überdimensioniert werden.
+
+
+% Quelle mosfets ?
+Für die Schrittmotorsteuerung werden zwei H-Brücken benötigt. Um den Schaltungsaufbau zu minimieren, wird ein integrierter Motortreiber (Texas Instruments: DRV8432) mit zwei H-Brücken benutzt. Der DRV8432 arbeitet mit einer maximalen Betriebsspannung von $52 \text{ V}$ und kann einen Dauerstrom von $2 \text{ x } 7 \mathrm{A}$ ($2 \text{ x }12\text{ A}$ Spitzenstrom) liefern. Der Motor-Treiber kann eine PWM-Frequenz von bis zu $500 \text{ kHz}$ verarbeiten. 
+Zusätzlich besitzt der Motortreiber einen einstellbaren Überstromschutz und Selbst-Schutzmechanismen wie Unterspannungsschutz, \gls{otw}, Überladungsschutz und \gls{flt} \cite{TI:Datasheet}.
+
+Um das eintreten eines Fehlerzustandes zu signalisieren, stellt der Treiber die Signale OTW und FAULT an den entsprechenden Pins bereit. 
+Zur Auswertung wird sowohl für Überstrom als auch für Übertemperatur jeweils ein Pin (aktiv LOW) für den Mikrocontroller zur Verfügung gestellt. Die PWM-Signaleingänge müssen LVTTL-Pegel ($3,3 \text{ V}$) besitzen.
+
+\paragraph{Varianten zur Strommessung mit Shunt}
+$\,$
+
+Eine Möglichkeit ist, die Strommessung über einen Shunt zu realisieren. Dieser befindet sich im Drainstrompfad und der Mikrocontroller kann die gemessene Spannung direkt auswerten. Eine weitere Möglichkeit den Strom eines Motors zu ermitteln, ist die direkte Messung des Phasenstroms. Dies hat zur Folge, dass sowohl positive als auch negative Spannungen gemessen werden, da der Strom in der Phase nach der Schrittfolge in unterschiedliche Richtungen fließt. Ein Mikrocontroller kann aber nur positive Spannungen messen. Eine Signalaufbereitung durch eine Analogschaltung ist hierfür notwendig. Diese zwei erwähnten Messmöglichkeiten werden mit einem Shunt durchgeführt. Eine weitere Möglichkeit ist die Messung mittels eines Stromwandlers. Hier wird zwischen aktiven und passiven unterschieden. Der passive Stromwandler besteht aus einem Eisenring, wodurch der stromdurchflossene Leiter gewickelt ist (Primärwicklung). Eine weitere Wicklung (Sekundärwicklung) ist mit einem Shunt verbunden. Der aktive Stromwandler wird ebenfalls mit einem Eisenring und zusätzlich mit einem Hall-Sensor ausgeführt, welcher im Schlitz des Eisenringes eingefügt ist. In beiden Arten wird das Magnetfeld des Leiters gemessen. Nachteil dieser Messmethoden ist ein erhöhter Schaltungsaufwand und die damit erhöhten Kosten, welche für die Strommessung am Schrittmotor nicht notwendig sind.
+
+Zur Bestimmung des Stromes wird die Strommessung mittels Shunt im Drainstrompfad umgesetzt. Der \gls{adc} im Mikrocontroller wird auf eine Referenzspannung von $1,1 \text{ V}$ eingestellt. Die Wandlung der Spannung im ADC wird bei steigender Flanke des PWM-Signals getriggert. So ist gewährleistet, dass der Strom immer zum High-Signal der PWM gemessen wird. Weitere Erläuterungen zur PWM werden in Kapitel \ref{sc:stromregelung} erläutert. Der maximale Phasenstrom beträgt $4,2 \text{ A}$. Der Shunt muss für folgende Leistung dimensioniert sein:
+\begin{equation}
+P= U \cdot I = 1,1 \text{ V} \cdot 4,2 \text{ A} =  4,62\,\text{ W}
+\label{eq:pshunt}
+\end{equation}
+Es wird ein Shunt von VISHAY mit \SI{0,25}{\ohm} und \SI{5}{\text{ W}} maximaler Verlustleistung benutzt. Der Widerstand besitzt ein Thermalpad auf der Oberseite, dass heißt es besteht die Möglichkeit mit einem zusätzlichem Kühlkörper die maximal mögliche Verlustleistung zu erhöhen. 
+%%%%%%%%%%%%%%%%%%
+% Pegelwandler
+%%%%%%%%%%%%%%%%%%
+\section{Pegelwandler}
+Der Mikrocontroller wird mit $5\text{ V}$ betrieben, das heißt, dass die IO-Ausgänge ebenfalls diese Spannung besitzen. Der Motortreiber DRV8432 darf aber nur mit LVTTL betrieben ($3,3 \text{ V}$) werden, da die PWM-Signaleingänge nicht $5\text{ V}$ Spannungsfest sind. Folglich muss der Spannungspegel angepasst werden. Der Pegelwandler muss  $5\text{ V}$  eingangstolerant sein und darf nicht für Push-Pull und Open-Drain-Betrieb ausgelegt sein (siehe Abbildung \ref{fig:pegel0}). 
+\begin{figure}[h!]%Quelle: LT-Spice
+			\centering
+			\includegraphics[width=0.4\linewidth]{bilder/pegelwandler0.pdf}
+			\caption{Signal\"ubertragung zwischen Mikrocontroller und Motortreiber ohne Pegelwandlung (vlg. \cite{MT:TipsAndTricks} S.127)}
+			\label{fig:pegel0}
+\end{figure}
+
+Die Pegelwandlung kann über einen Spannungsteiler (siehe Abbildung \ref{fig:pegel1}) realisiert werden. Je nach benötigter Übertragungsgeschwindigkeit und Belastung des Ausganges vom Mikrocontroller muss der Spannungsteiler richtig Dimensioniert werden. 
+\begin{figure}[h!]%Quelle: LT-Spice
+			\centering
+			\includegraphics[width=0.4\linewidth]{bilder/pegelwandler1.pdf}
+			\caption{Pegelanpassung mittels Spannungsteiler (vlg. \cite{MT:TipsAndTricks} S.128)}
+			\label{fig:pegel1}
+\end{figure}
+
+Eine weitere Möglichkeit ist eine Klemmdiode am $3,3\text{ V}$-Eingang. Um den Strom durch die Diode gering zu halten, muss ein Vorwiderstand hinzugefügt werden. Dieser besitzt den Nachteil, dass der Spannungspegel eventuell nicht so schnell wie gewünscht umgewandelt wird (siehe Abbildung \ref{fig:pegel2}). Ein weiterer Nachteil einer Klemmdiode ist, dass Strom in den $3,3\text{ V}$-Eingang gespeist wird. Abhilfe schafft ein Transistor der den Strom an die Masse abführt (siehe Abbildung \ref{fig:pegel3}).
+\begin{center}
+	\begin{minipage}[!ht]{0.47\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=0.9\linewidth]{bilder/pegelwandler2.pdf}
+			\caption{Pegelanpassung mittels Diode (vlg. \cite{MT:TipsAndTricks} S.127)}
+			\label{fig:pegel2}
+	\end{minipage}
+	\quad
+	\begin{minipage}[!ht]{0.47\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=0.9\linewidth]{bilder/pegelwandler3.pdf}
+			\caption{Pegelanpassung mittels Transistor (vlg. \cite{MT:TipsAndTricks} S.128)}
+			\label{fig:pegel3}
+	\end{minipage}
+\end{center}
+
+Für den verwendeten Motortreiber müssen insgesamt sechs Signale auf $3,3\text{ V}$ gewandelt werden. Vier zur Generierung des Drehfeldes an den zwei Phasen des Schrittmotors und zusätzlich zwei Signale zum Ein- und Ausschalten der Phasen. Ein diskreter Aufbau, wie die beschriebenen Lösungen führen bei Anpassung mehrerer Signale zu einem erhöhten Schaltungsaufwand \cite{MT:TipsAndTricks}. Durch eine \gls{ic} lässt sich dieser minimieren (siehe Abbildung \ref{fig:pege4}). Das heißt, anstatt mehrere kleinere passive Bauelemente zu verschalten wird nur ein aktives Bauteil verwendet. Hierfür wird der 74LVC245A von TI eingesetzt \cite{TI:DatasheetLT}. 
+\begin{figure}[h!]%Quelle: LT-Spice
+			\centering
+			\includegraphics[width=0.6\linewidth]{bilder/pegelwandler4.pdf}
+			\caption{Pegelanpassung mittels Pegelwandler 74LVC245A}
+			\label{fig:pege4}
+\end{figure}
+
+\begin{center}
+	\begin{minipage}[!ht]{0.49\textwidth}
+			\centering
+			\captionsetup{type=figure}
+			\includegraphics[height=4cm]{bilder/74LVC245A.pdf}
+			\caption{Pinbelegung 74LVC245A, \\(vgl. \cite{TI:DatasheetLT} S.1)}
+			\label{fig:pegel5}
+	\end{minipage}
+	\begin{minipage}[!ht]{0.49\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[height=4cm]{bilder/74LVC245A_1.pdf}
+			%\includegraphics[0,0][20,80]{bilder/74LVC245A_1.pdf}
+			\caption[Logikplan 74LVC245A]{Logikplan 74LVC245A, \\(vgl. \cite{TI:DatasheetLT} S.2)}
+			\label{fig:pegel6}
+	\end{minipage}
+\end{center}
+
+Dies ist ein Bustreiber mit $5\text{ V}$ toleranten Eingängen und wird in der Schaltung als Pegelwandler verwendet. Er kann in Abhängigkeit des Logikpegels am Richtungspin (DIR) Signale von Seite A zu B oder umgekehrt übertragen. Der Ausgangsspannungsbereich liegt zwischen $1,65\text{ V}$ und $ 3,6\text{ V}$ \cite{TI:DatasheetLT}. In Tabelle \ref{tab:fktitabelpegel} sind die drei Zustände des Pegelwandlers in Abhängigkeit der Logikpegel an den Eingängen beschrieben, zusätzlich ist der Logikplan aufgezeichnet (siehe Abbildung \ref{fig:pegel6}).
+
+\begin{table*}[!h]
+	\centering
+	\caption[Funktionstabelle 74LVC245A, \\H-High, L-Low, X-Tristate]{Funktionstabelle 74LVC245A, \\H-High, L-Low, X-Tristate, (vgl. \cite{TI:DatasheetLT} S.2 )}
+		\begin{tabular}{c c c}
+		\multicolumn{2}{c}{\textbf{Eingänge}}			& {\textbf{Operation}} \\
+	$\overline{\text{OE}}$		&	DIR			&			\\\hline
+	\rowcolor[gray]{.8} L												& L 			&		Datentransfer von B nach A	\\
+	L													&	H				&		Datentransfer von A nach B				\\
+\rowcolor[gray]{.8}	H													& X				&		Isolation			\\
+ 			\end{tabular}
+	\label{tab:fktitabelpegel}
+\end{table*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%				Spannungsversorgung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Spannungsversorgung}
+Für die gesamte Schaltung sind unterschiedliche Spannungen notwendig. Vom Netzteil werden  $24\text{ V}$ direkt für die PVDD (Spannung des Leistungsteils vom DRV8432) und  $5\text{ V}$ direkt für den Mikrocontroller zur Verfügung gestellt.
+Der Motortreiber benötigt $12 \text{ V}$  für die VDD (Spannungsversorgung vom DRV8432) und für die GVDD (Gatespannung vom DRV8432) mit einer maximalen Stromaufnahme von  $18,5 \text{ mA}$, der Pegelwandler benötigt $3,3 \text{ V}$ und $\pm 50 \text{ mA}$. Diese Spannungen werden durch Linearregler gewandelt (siehe Tabelle \ref{tab:spanungsversorgung}), aus $24 \text{ V}$ werden $12 \text{ V}$ und aus $5 \text{ V}$ werden $3,3 \text{ V}$ erzeugt. Wie im Kapitel \ref{sec:buckconvert} beschrieben ist der Wirkungsgrad von Linearregler nicht sehr groß, da sie die überschüssige Energie in Wärme umwandeln. Da keine großen Ströme gewandelt werden, sind die Verluste vernachlässigbar klein.
+\begin{table*}[!h]
+	\centering
+	\caption{Spannungsversorgung der ICs}
+		\begin{tabular}{r c r}
+					Bauelelement										&  Versorgungsspannung & Bauteil						\\ \hline
+				IO-Mikrocontroller								&				$5\text{ V}$						&	Netzteil					\\
+				\rowcolor[gray]{.8}	Motortreiber PVDD	&		 $24\text{ V}$		& Netzteil					\\
+				\rowcolor[gray]{.8}				VDD,	GVDD	&		 $12\text{ V}$	&			LM3490IM5-12	\\
+				\gls{adc}-Pegelwandler						&		$3,3 \text{ V}$							& LM3480IM3-3.3			\\
+ 			\end{tabular}
+		\label{tab:spanungsversorgung}
+\end{table*}

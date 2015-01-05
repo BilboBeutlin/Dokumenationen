@@ -1,0 +1,112 @@
+% bachelor.tex
+%-----------------------------------------------------------------------------
+% Aufbau eines LaTeX - Dokuments
+% Erstellt am 17.03.2010 durch Prof. Dr. Manfred Krüger, Hochschule Wismat, FIW
+%-----------------------------------------------------------------------------
+\input{header}							% Headerdatei einbinden
+%\glsaddall 													% Alle definierten Abkürzungen ins Abk.Verzeichnis einfügen
+\makeglossaries 							% Abkürzungsverzeichnis einfügen
+
+%
+% Trennmuster für Ausnahmefälle
+% 
+\hyphenation{Spannungs-auflösung}
+	
+
+
+%-----------------------------------------------------------------------------
+% Begin des Dokuments
+%-----------------------------------------------------------------------------
+\begin{document} 						% Begin des Dokument
+	\pagenumbering{Roman}			% römische Nummerierung
+	\include{kapitel/titel}		% Titelseite einbinden
+	\onehalfspacing 					% 1 1/2-zeilig (package 'setspace')
+	
+	%-----------------------------------------------------------------------------
+	% Text
+	%-----------------------------------------------------------------------------
+	%	\include{kapitel/aufgabenstellung}	% Aufgabenstellung einfügen
+	%\include{kapitel/zusammenfassung}		% Abstract einfügen
+	
+	%-----------------------------------------------------------------------------
+	% Inhaltsverzeichnis
+	%-----------------------------------------------------------------------------	
+	%\include{kapitel/auto}	
+	\setcounter{page}{2}
+	\pdfbookmark[1]{Inhalt}{toc}	% Inhaltsverzeichnis zu den Lesezeichen hinzufügen
+	\renewcommand{\contentsname}{Inhalt}
+	\setuptoc{toc}{totoc}
+	\singlespacing 						% 1-zeilig
+	\tableofcontents 					% Inhaltverzeichnis einfügen
+	\onehalfspacing 					% 1 1/2-zeilig (package 'setspace')
+	\cleardoublepage
+	
+	% Abkürzungsverzeichnis einfügen------------------------------------------------------------
+	\glstoctrue							% Abkürungsverzeichnis im Inhalsverzeichnis aufnehmen
+	%\setglossarystyle{mylist}
+	\glsaddall
+	\printglossary[type=\acronymtype,
+									title=Abkürzungsverzeichnis,
+									toctitle=Abkürzungsverzeichnis] 
+	%-----------------------------------------------------------------------------	
+	
+	%-----------------------------------------------------------------------------
+	% Hauptteil
+	%-----------------------------------------------------------------------------	
+	% Die einzelnen Kapitel
+% Kopfzeile: links leer (Kapitel \leftmark), rechts Sektion
+
+	\newpage
+	\newcounter{roemisch}
+	\setcounter{roemisch}{\value{page}}
+	\setcounter{page}{1}
+	\pagenumbering{arabic}									% arabische Nummerrierung
+	\include{kapitel/Aufgabenstellung}			% Vorläufige Gliederung
+	%\include{kapitel/grund}									% Grundlagen Kapitel einfügen (grund.tex)
+	%\include{kapitel/hardware}
+	%
+	%\include{kapitel/software}
+	%\include{kapitel/auswertung}
+	%\include{kapitel/zusammenfassung}							% Schlusskapitel einfügen (schluss.tex)
+	
+
+	
+	%-----------------------------------------------------------------------------
+	% Literaturverzeichnis einfügen, 
+	% Nutzung der BibTeX-Technologie --> literatur.bib 
+	%-----------------------------------------------------------------------------
+	\nocite{*}								% damit alle in der DB enthaltende Einträge bearbeitet werden
+	\bibliography{literatur}	% gibt Datei mit der Literatur an
+
+	%-----------------------------------------------------------------------------
+	% Verzeichnisse
+	%-----------------------------------------------------------------------------
+	\pagenumbering{Roman}			% römische Nummerrierung
+	\setcounter{page}{\value{roemisch}}
+	\singlespacing 						% 1-zeilig
+	\listoffigures						% Bildverzeichnis einfügen
+	\listoftables							% Tabellenverzeichnis einfügen
+	%\glstoctrue							% Abkürungsverzeichnis im Inhalsverzeichnis aufnehmen
+	%\printglossary[type=acronym,title=Abkürzungsverzeichnis,toctitle=Abkürzungsverzeichnis] 
+	%\printglossary[	title=Abkürzungen
+	%								,toctitle=Abkürzungen
+	%								,type=\acronymtype
+	%								,style=long]
+	
+	\onehalfspacing 					% 1 1/2-zeilig (package 'setspace')
+
+	%-----------------------------------------------------------------------------
+	% Anhang
+	%-----------------------------------------------------------------------------
+	\renewcommand*\chapterpagestyle{sectionstyle}
+	\appendix
+	%	\include{kapitel/anhang}	% Anhang
+
+	%-----------------------------------------------------------------------------
+	% Thesen und Selbstständigkeitserklärung
+	%-----------------------------------------------------------------------------	
+	%\include{kapitel/selbstständigkeitserklärung}	% Selbstständigkeitserklärung einfügen
+  %\include{kapitel/thesen}	% Thesen einfügen
+	
+\end{document}							% Ende des Dokuments
+%-----------------------------------------------------------------------------

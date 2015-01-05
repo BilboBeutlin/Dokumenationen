@@ -1,0 +1,56 @@
+\chapter{Aufgabenstellung}
+\section{Motivation}
+In der medizinischen Forschung werden häufig Tierversuche durchgeführt, die am häufigst verwendete Tierart sind Mäuse und Ratten.
+Die Mäuse und Ratten werden in Käfigen gehalten, um Rückschlüsse auf den medizinische Zustand zu erhalten wird die Körpertemperatur gemessen. Um diesen Zeitaufwand einzusparen soll die Messung und Auswertung der Temperatur automatisiert werden. Für diesen Zweck wurde ein Prototyp mit einer Infrarot-Kamera zur Tierbeobachtung erstellt. 
+Ziel dieser Belegarbeit ist es, ein thermisches Modell zu erstellen, welches die infrarot Aufnahme einer Maus in mehreren Pixel darstellt.
+
+\section{Beleg - Spezifikation}
+Es wird für die erstellten Modelle eine statisch thermische Simulation durchgeführt. Eine Optimierung hinsichtlich der geometrischen Anordnung, sowie ein Vergleich der bisherigen Ergebnisse in Bezug auf gegenseitige Beeinflussung, zeitliche Erwärmung und Abkühlung. Daraufhin ist mit dem besten Ergebnis eine Simulation durchzuführen die den zeitlichen Verlauf von Verschiebungseffekten sichtbar macht. 
+\begin{table}[bh]
+	\centering
+	\caption{Beleg - Spezifikation}
+	\begin{tabular}{l p{9cm} } 
+			\rowcolor[gray]{.8}	 Leiterplatte (LP):& 50x50 mm, 7x7 Bauelemente, 2 Lagig (Toplayer Bauelemente, Bottomlayer Leiterbahnen)\\
+			Anordung& in der Mitte der LP 3x3 Pixel mit gleicher Verlustleistung (außer das mittlere Element) 	  					\\	
+			\rowcolor[gray]{.8}Ausführung: & jeweils mit Transistoren SMD (SOT23) und SMD Widerständen (1206)\\
+			Verlustleistungen:& 50 mW, 100 mW, 150 mW 
+		%Feld&\multicolumn{2}{c}{}\\
+	\end{tabular}
+	\label{tab:beleg_anforderungen}
+\end{table}
+
+%\newpage
+\begin{center}
+	\begin{minipage}[!ht]{.8\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/sot23footprint.pdf}
+			\caption{Transistor- Dimensionen als SOT23 Gehäuses, \\Quelle: NXP - PDTC114E Datenblatt S.10 }
+			\label{fig:Messaufbau}
+	\end{minipage}
+	\hspace{1cm}
+	\begin{minipage}[!ht]{0.45\textwidth}
+		\centering 
+		\captionsetup{type=figure}
+		%\def\svgwidth{200pt}
+		%\includegraphics[width=1\linewidth]{bilder/grafik_messaufbau.pdf}
+		%	\includegraphics{bilder/messstand_biegebalken}
+		%\resizebox{1.02\textwidth}{!}{\input{bilder/grafik_messaufbau.pdf_tex}}
+		\caption{Informationsverlauf des Messaufbaus}
+		\label{graf:Invormationsverlauf_Messaufbau}
+	\end{minipage}
+\end{center}
+
+		
+\newpage
+
+
+\section{Antrieb}
+Zur Kraftübertragung wird eine Kombination aus einem Schrittmotor und einem Linearantrieb verwendet. In Tabelle \ref{tab:Motoreigenschaften} sind die Eigenschaften der vorhandenen Schrittmotoren gegenübergestellt. Der Schrittmotor für die vertikale Richtung besitzt einen maximalen Phasenstrom von $4,2 \text{ A}_\text{eff}$ und ein maximales Moment von $1,7 \text{ Nm}$. Der Motor für die horizontale Richtung ist kleiner, besitzt ein geringeres Drehmoment von $0,59 \text{ Nm}$ und einen Phasenstrom von $0,6 \text{ A}$.
+
+
+
+%Die Spindel für die vertikale Achse hat eine Steigung von $4 \text{ mm}$, die für die horizontale Achse besitzt $2 \text{ mm}$ Steigung (siehe Tabelle \ref{tab:Spindeleigenschaften}).
+
+\section{Kommunikation}
+Die Kraftregelung (Bild \ref{graf:Invormationsverlauf_Messaufbau}) besteht aus drei Teilbereichen: der \gls{dms}-Messschaltung, dem Kraftregler und der Motorsteuerung. Die Messschaltung und die Kraftregelung wird unter anderem mit Atmel Mikrocontrollern durchgeführt. Um einen Datenaustausch zwischen den Controllern gewährleisten zu können, wird eine Kommunikation über einen \gls{i2c} Datenbus festgelegt.
+
