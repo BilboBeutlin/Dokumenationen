@@ -40,17 +40,3 @@ Es wird für die erstellten Modelle eine statisch thermische Simulation durchgefü
 	\end{minipage}
 \end{center}
 
-		
-\newpage
-
-
-\section{Antrieb}
-Zur Kraftübertragung wird eine Kombination aus einem Schrittmotor und einem Linearantrieb verwendet. In Tabelle \ref{tab:Motoreigenschaften} sind die Eigenschaften der vorhandenen Schrittmotoren gegenübergestellt. Der Schrittmotor für die vertikale Richtung besitzt einen maximalen Phasenstrom von $4,2 \text{ A}_\text{eff}$ und ein maximales Moment von $1,7 \text{ Nm}$. Der Motor für die horizontale Richtung ist kleiner, besitzt ein geringeres Drehmoment von $0,59 \text{ Nm}$ und einen Phasenstrom von $0,6 \text{ A}$.
-
-
-
-%Die Spindel für die vertikale Achse hat eine Steigung von $4 \text{ mm}$, die für die horizontale Achse besitzt $2 \text{ mm}$ Steigung (siehe Tabelle \ref{tab:Spindeleigenschaften}).
-
-\section{Kommunikation}
-Die Kraftregelung (Bild \ref{graf:Invormationsverlauf_Messaufbau}) besteht aus drei Teilbereichen: der \gls{dms}-Messschaltung, dem Kraftregler und der Motorsteuerung. Die Messschaltung und die Kraftregelung wird unter anderem mit Atmel Mikrocontrollern durchgeführt. Um einen Datenaustausch zwischen den Controllern gewährleisten zu können, wird eine Kommunikation über einen \gls{i2c} Datenbus festgelegt.
-
