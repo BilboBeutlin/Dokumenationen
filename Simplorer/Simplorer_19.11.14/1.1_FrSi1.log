@@ -1,0 +1,62 @@
+
+== TASK ===========================================================================================
+Tasknummer                 : 1
+Taskname                   : FrSi1
+Läufe                      : 1
+Modelldatei                : C:\Dokumente und Einstellungen\student\Eigene Dateien\EMS\1.1.sml
+Ausgabedatei               : C:\Dokumente und Einstellungen\student\Eigene Dateien\EMS\1.1_FrSi1
+Erzeugt am                 :  19.12.14   10:30:19
+Erzeugt von                : elektrische Antriebe
+Verändert am               :  19.12.14   10:30:19
+Verändert von              : elektrische Antriebe
+Tasktyp                    : Frequenzgang Analyse
+Simulator                  : sim
+Sofortgraphik              : Ja
+Ausgabetyp                 : Alle Lösungen
+Gesamtfitnessausgabe       : Nein
+Fitnesstyp                 : Summe
+Wichtung                   : automat. Wichtung
+Vorzeitig abbrechen        : Nein
+Läufe                      : 10
+Generationen               : 10
+Individuen je Generation   : 10
+Selektionen                : 5
+Mutationen                 : 5
+Selektionsschema           : Elitismus
+Kreuzungsschema            : 1-Punkt
+FStart                     : 1
+FStop                      : 1000
+TEnd(FStart)               : 1
+TEnd(FStop)                : 0.1
+Hmin(FStart)               : 1e-006
+Hmax(FStart)               : 0.001
+Hmin(FStop)                : 1e-007
+Hmax(FStop)                : 0.0001
+Makro Typ                  : Frequ_1
+Frequenz Variation         : Linear
+Zusätzliche Frequenzen     : Nein
+Reglerabtastzeit anpassen  : Nein
+Reglerabtastzeit (FStart)  : 0.001
+Reglerabtastzeit (FStop)   : 0.0001
+Anzahl Parameter           : 0
+Anzahl Gütekriterien       : 0
+
+Lauf: 1 von 1 (Task)  /  1 von 1 (Gesamt)
+     Startzeit: 19.12.14 10:30:20
+     Parameter 1: Frequency = 1
+     Parameter 2: Period = 1
+     Parameter 3: Angle = 0
+     Parameter 4: Offset = 0
+     Parameter 5: TEND = 1
+     Parameter 6: HMIN = 1u
+     Parameter 7: HMAX = 1m
+-- INFO -------------------------------------------------------------------------------------------
+Simulatornachricht:
+	[Sim2000]
+	Fehler - Fehler beim Setzen Parameters <SINUS.FREQ> !
+	>>	Vorbereitung
+
+** FEHLER *****************************************************************************************
+Die Simulation konnte nicht erfolgreich durchgeführt werden.
+Simulation mit Fehler beendet !
+

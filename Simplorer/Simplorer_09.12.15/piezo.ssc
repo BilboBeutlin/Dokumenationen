@@ -1,0 +1,50 @@
+; SIMPLORER Project File - Do not modify !!!
+
+[General]
+ProjectName=piezo
+ProjectPath=c:\dokumente und einstellungen\student\desktop\simplorer_09.12.15
+Description=
+CreationBy=elektrische Antriebe
+CreationAt=Fri Dec 19 08:29:23 2014
+ModificationBy=elektrische Antriebe
+ModificationAt=Fri Jan 09 10:18:24 2015
+LastPrg=
+LastSim=
+LastAna=0
+LastSort=0
+
+[Comment]
+LinesInComment=0
+
+[FileList]
+NumberOfFiles=30
+File0=.\1.1.SSH
+File1=.\1.1.sml
+File2=.\1.1.sdb
+File3=.\1.1_FrSi1.log
+File4=.\7.1.2_Amp.sml
+File5=.\7.1.2_Amp.sdb
+File6=.\7.1.2_Amp.vtc
+File7=.\7.1.2_Strom.SSH
+File8=.\7.1.2_Strom.sml
+File9=.\7.1.2_Strom.sdb
+File10=.\7.1.3.SSH
+File11=.\7.1.3.sml
+File12=.\7.1.3.sdb
+File13=.\7.1.3_Strom.SSH
+File14=.\7.1.3_Sprung.SSH
+File15=.\7.1.3_Sprung.sml
+File16=.\7.1.3_Sprung.sdb
+File17=.\7.1.3_Strom_Amp.SSH
+File18=.\7.2.1_.SSH
+File19=.\7.2.1_.sml
+File20=.\7.2.1_.sdb
+File21=.\7.2.2_Bode.SSH
+File22=.\7.2.2_Sprung.SSH
+File23=.\7.2.2_Sprung.sml
+File24=.\7.2.2_Sprung.sdb
+File25=.\7.2.2_Bode.sml
+File26=.\7.2.2_Bode.sdb
+File27=.\7.1.2_Sprung.SSH
+File28=.\7.1.2_Sprung.sml
+File29=.\7.1.2_Sprung.sdb

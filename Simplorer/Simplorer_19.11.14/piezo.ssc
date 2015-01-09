@@ -1,0 +1,28 @@
+; SIMPLORER Project File - Do not modify !!!
+
+[General]
+ProjectName=piezo
+ProjectPath=c:\dokumente und einstellungen\student\eigene dateien\ems
+Description=
+CreationBy=elektrische Antriebe
+CreationAt=Fri Dec 19 08:29:23 2014
+ModificationBy=elektrische Antriebe
+ModificationAt=Fri Dec 19 11:11:28 2014
+LastPrg=
+LastSim=
+LastAna=0
+LastSort=0
+
+[Comment]
+LinesInComment=0
+
+[FileList]
+NumberOfFiles=8
+File0=.\1.1.SSH
+File1=.\1.1.sml
+File2=.\1.1.sdb
+File3=.\1.1_FrSi1.log
+File4=.\7.1.2_Amp.SSH
+File5=.\7.1.2_Amp.sml
+File6=.\7.1.2_Amp.sdb
+File7=.\7.1.2_Amp.vtc
