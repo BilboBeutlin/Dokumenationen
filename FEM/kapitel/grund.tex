@@ -1,2 +1,36 @@
 \newpage
 \chapter{Anordnung der Transistoren und Widerstände}
+Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Bauelemente durch Quader Repräsentiert werden. Des weiteren wurde auf die Erstellung der Leiterbahnen verzichtet. Dadurch ergibt sich, dass die Leiterplatte ebenfalls durch einen einfachen Quader erstellt wird. Des Weiteren ist bei der Positionierung darauf zu achten, dass die abstände zwischen den Bauelementen in X-Richtung und in Y-Richtung Gleich groß ist und innerhalb der Optimierung symmetrisch erweitert und verringert wird. 
+
+\section{Transistoranordnung}
+	Die Abbildung \ref{fig:Abmessungen_sot23} zeigt die Abmessungen eines Transistors der geforderten Bauform SOT23. Der Quader, welcher einen solchen Baustein repräsentieren soll, erhält die darauf beruhenden Abmessungen h=1,1mm b=1,4mm h=3,0mm.
+	\begin{center}
+		\begin{minipage}[!ht]{0.8\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/Abmessungen_SOT23}
+			\caption{Transistor - Abmessungen eines SOT23 Gehäuses, Quelle: NXP - PDTC114E Datenblatt S.10}
+			\label{fig:Abmessungen_sot23}
+		\end{minipage}
+	\end{center}
+	Um die Transistoren zu Positionieren, muss die Größe der Anschlüsse berücksichtigt werden. diese wiederum werden über die footprints ermittelt. (vgl. Abbildung \ref{fig:footprint_sot23} ) Somit ergibt sich ein Mindestabstand zwischen den Transistoren in Y-Richtung von 3 mm und in X-Richtung von 3,3 mm. Um nunmehr die Abstände synchron zu halten werden die Abstände in X-Richtung um weitere 1,6 mm Vergrößert. Schlussendlich ergeben sich folgende Mindestabstände bzw. Vorgabelabstände:  
+	\begin{table}[bh]
+		\centering
+		\caption{Abstände zwischen den Transistoren}
+		\begin{tabular}{l >{\centering\arraybackslash}p{4cm} >{\centering\arraybackslash}p{4cm} } 
+			\rowcolor[gray]{.8} & Y-Richtung & X-Richtung\\
+			Mindestabstand = 0 mm& 4,6 mm & 3,3 mm\\	
+			\rowcolor[gray]{.8}Sollabstand = 2 mm& 6,6 mm & 5,3 mm\\
+		\end{tabular}
+		\label{tab:Abstände SOT23}
+	\end{table}
+	
+\section{Dimensionierung der Widerstände}
+	
+	\begin{center}
+		\begin{minipage}[!ht]{0.8\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/Abnessungen_SMD_1206}
+			\caption{Widerstand - Abmessungen SMD 1206, Quelle: Datenblatt RC1206 S.4}
+			\label{fig:Abmessungen_SMD_1206}
+		\end{minipage}
+	\end{center}
