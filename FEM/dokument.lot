@@ -2,4 +2,6 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {\relax 1.1}{\ignorespaces Beleg - Spezifikation\relax }}{1}{table.caption.7}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {\relax 2.1}{\ignorespaces Abst\"ande zwischen den Transistoren\relax }}{4}{table.caption.13}
+\contentsline {table}{\numberline {\relax 2.1}{\ignorespaces Abst\"ande zwischen den Mittelpunkten der Transistoren\relax }}{4}{table.caption.13}
+\contentsline {table}{\numberline {\relax 2.2}{\ignorespaces Abst\"ande zwischen den Mittelpunkten der SMD Widerst\"ande\relax }}{5}{table.caption.16}
+\addvspace {10\p@ }

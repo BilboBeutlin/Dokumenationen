@@ -12,20 +12,20 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 			\label{fig:Abmessungen_sot23}
 		\end{minipage}
 	\end{center}
-	Um die Transistoren zu Positionieren, muss die Größe der Anschlüsse berücksichtigt werden. diese wiederum werden über die footprints ermittelt. (vgl. Abbildung \ref{fig:footprint_sot23} ) Somit ergibt sich ein Mindestabstand zwischen den Transistoren in Y-Richtung von 3 mm und in X-Richtung von 3,3 mm. Um nunmehr die Abstände synchron zu halten werden die Abstände in X-Richtung um weitere 1,6 mm Vergrößert. Schlussendlich ergeben sich folgende Mindestabstände bzw. Vorgabelabstände:  
+	Um die Transistoren zu Positionieren, muss die Größe der Anschlüsse berücksichtigt werden. diese wiederum werden über die footprints ermittelt. (vgl. Abbildung \ref{fig:footprint_sot23} ) Somit ergibt sich ein Mindestabstand zwischen den Mittelpunkten der Transistoren in Y-Richtung von 3 mm und in X-Richtung von 3,3 mm. Um nunmehr die Abstände synchron zu halten werden die Abstände in X-Richtung um weitere 1,6 mm Vergrößert. Schlussendlich ergeben sich folgende Mindestabstände bzw. Vorgabelabstände für die Mittelpunktabstände:  
 	\begin{table}[bh]
 		\centering
-		\caption{Abstände zwischen den Transistoren}
+		\caption{Abstände zwischen den Mittelpunkten der Transistoren}
 		\begin{tabular}{l >{\centering\arraybackslash}p{4cm} >{\centering\arraybackslash}p{4cm} } 
-			\rowcolor[gray]{.8} & Y-Richtung & X-Richtung\\
-			Mindestabstand = 0 mm& 4,6 mm & 3,3 mm\\	
-			\rowcolor[gray]{.8}Sollabstand = 2 mm& 6,6 mm & 5,3 mm\\
+			\rowcolor[gray]{.8} & Mittelpunktabstand in Y-Richtung & Mittelpunktabstand in X-Richtung\\
+			Mindestgehäuseabstand = 0 mm& 4,6 mm & 3,3 mm\\	
+			\rowcolor[gray]{.8}Sollgehäuseabstand = 2 mm& 6,6 mm & 5,3 mm\\
 		\end{tabular}
 		\label{tab:Abstände SOT23}
 	\end{table}
 	
 \section{Dimensionierung der Widerstände}
-	
+	Die Abbildung \ref{fig:Abmessungen_SMD_1206} zeigt die Abmessungen der geforderten Widerstände. Hierbei ergeben sich die Abmessungen h=0,55 mm b=1,6 mm l=3,1 mm für das zu simulierende Modell. Die footprints legen einen Mindestabstand fest, somit muss rund um den Baustein ein abstand von 1,6 mm eingehalten werden.
 	\begin{center}
 		\begin{minipage}[!ht]{0.8\textwidth}
 			\captionsetup{type=figure}
@@ -34,3 +34,54 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 			\label{fig:Abmessungen_SMD_1206}
 		\end{minipage}
 	\end{center}
+	\newpage
+	Weiter ergeben sich somit folgende Mittelpunktabstände:
+	\begin{table}[bh]
+		\centering
+		\caption{Abstände zwischen den Mittelpunkten der SMD Widerstände}
+		\begin{tabular}{l >{\centering\arraybackslash}p{4cm} >{\centering\arraybackslash}p{4cm} } 
+			\rowcolor[gray]{.8} & Mittelpunktabstand in Y-Richtung & Mittelpunktabstand in X-Richtung\\
+			Mindestgehäuseabstand = 0 mm& 4,6 mm & 3,2 mm\\	
+			\rowcolor[gray]{.8}Sollgehäuseabstand = 2 mm& 6,6 mm & 5,2 mm\\
+		\end{tabular}
+		\label{tab:Abstände SOT23}
+	\end{table}
+\section{Bildung des Zu simulierenden Modells}
+	Mit den zuvor angegebenen Vorgaben wurden die Folgenden Geometrien geschaffen. Dabei wird auf der Platine ein Bauelement generiert und dieses über eine zweifache Anwendung der Muster-Funktion zu einer Matrix erweitert.
+	Ein selbst gesetztes ziel ist es hierbei, die Matrix mit einem Parameter editieren zu können. dabei haben die Abstände in X- und Y-Richrung Abweichend. Das Problem Wurde Folgender Maßen Gelöst:
+	Im ersten Schritt wurde ein Parameter P20 erzeugt, welcher den geringeren Abstand zwischen den Mittelpunkten zwei benachbarter Bauelemente beschreibt. Dieser soll später geändert werden. um diesen nun mit dem Abstand verknüpfen zu können wurde ein Parameter mit der Länge 1,0 mm geschaffen. Somit kann der Abstand durch das Produkt der Parameter gewonnen werden. Um den unterschiedlichen abstände in X- und Y-Richtung zu realisieren, wurde ein Offsetparameter geschaffen, der nun mit dem anderen Abstand addiert wird. Da dieser wiederum von dem Parameter P20 Abhängt, sind beide Abstände von diesem Parameter abhängig und trotzdem werden bleiben die Abstände zwischen den Bauelementen Symmetrisch. Im folgenden werden die Geometrien für die Simulation der Transistoren gezeigt.
+	\begin{center}
+		\begin{minipage}[!ht]{0.6\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/TransistorMatrix}
+			\caption{Transistor - Matrix}
+			\label{fig:TransistorMatrix}
+		\end{minipage}
+	\end{center}
+	und im Vergleich dazu die Matrix der Widerstände.
+	\begin{center}
+		\begin{minipage}[!ht]{0.6\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/WiderstandsMatrix}
+			\caption{Widerstand - Matrix}
+			\label{fig:WiderstandsMatrix}
+		\end{minipage}
+	\end{center}
+	Zu erkennen ist, dass sich die beiden Geometrien hauptsächlich durch die Bauteilhöhe unterscheiden. Die Matrizen und abstände zwischen den Bauteilen ähneln sich.
+\chapter{Thermisch stationäre Simulation}
+	...
+	Vorbereitung
+	...
+	\section{Simulation der Transistor Matrix}
+	...
+		\subsection{Optimierung}
+		...
+		\subsection{Aufgabe mit Rand}
+		...
+	\section{Simulation der Widerstandsmatrix}
+	...
+		\subsection{Optimierung}
+		...
+		\subsection{Aufgabe mit Rand}
+		...
+		
