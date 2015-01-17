@@ -48,8 +48,8 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 	\end{table}
 \section{Bildung des Zu simulierenden Modells}
 	Mit den zuvor angegebenen Vorgaben wurden die Folgenden Geometrien geschaffen. Dabei wird auf der Platine ein Bauelement generiert und dieses über eine zweifache Anwendung der Muster-Funktion zu einer Matrix erweitert.
-	Ein selbst gesetztes ziel ist es hierbei, die Matrix mit einem Parameter editieren zu können. dabei haben die Abstände in X- und Y-Richrung Abweichend. Das Problem Wurde Folgender Maßen Gelöst:
-	Im ersten Schritt wurde ein Parameter P20 erzeugt, welcher den geringeren Abstand zwischen den Mittelpunkten zwei benachbarter Bauelemente beschreibt. Dieser soll später geändert werden. um diesen nun mit dem Abstand verknüpfen zu können wurde ein Parameter mit der Länge 1,0 mm geschaffen. Somit kann der Abstand durch das Produkt der Parameter gewonnen werden. Um den unterschiedlichen abstände in X- und Y-Richtung zu realisieren, wurde ein Offsetparameter geschaffen, der nun mit dem anderen Abstand addiert wird. Da dieser wiederum von dem Parameter P20 Abhängt, sind beide Abstände von diesem Parameter abhängig und trotzdem werden bleiben die Abstände zwischen den Bauelementen Symmetrisch. Im folgenden werden die Geometrien für die Simulation der Transistoren gezeigt.
+	Ein selbst gesetztes Ziel ist es hierbei, die Matrix mit einem Parameter editieren zu können. Dabei sind die Abstände in X- und Y-Richtung Unterschiedlich. Das Problem wurde folgender Maßen gelöst:
+	Im ersten Schritt wurde ein Parameter P20 erzeugt, welcher den geringeren Abstand zwischen den Mittelpunkten zwei benachbarter Bauelemente beschreibt. Dieser soll später geändert werden. Um diesen nun mit dem Abstand verknüpfen zu können, wurde ein Parameter mit der Länge 1,0 mm geschaffen. Somit kann der Abstand durch das Produkt der Parameter gewonnen werden. Um die unterschiedlichen Abstände in X- und Y-Richtung zu realisieren, wurde ein Offset-Parameter geschaffen, der nun mit dem anderen Abstand addiert wird. Da dieser wiederum von dem Parameter P20 Abhängt, sind beide Abstände von diesem Parameter abhängig und trotzdem bleiben die Abstände zwischen den Bauelementen Symmetrisch. Im folgenden werden die Geometrien für die Simulation der Transistoren gezeigt.
 	\begin{center}
 		\begin{minipage}[!ht]{0.6\textwidth}
 			\captionsetup{type=figure}
@@ -67,7 +67,7 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 			\label{fig:WiderstandsMatrix}
 		\end{minipage}
 	\end{center}
-	Zu erkennen ist, dass sich die beiden Geometrien hauptsächlich durch die Bauteilhöhe unterscheiden. Die Matrizen und abstände zwischen den Bauteilen ähneln sich.
+	Zu erkennen ist, dass sich die beiden Geometrien hauptsächlich durch die Bauteilhöhe des SOT23-Gehäuses und der SMD-Widerstandes 1206 unterscheiden. Die Matrizen und Abstände zwischen den Bauteilen ähneln sich.
 \chapter{Thermisch stationäre Simulation}
 	Nachdem Die Geometrie definiert ist (Siehe Abschnitt  ) müssen verschiedene Messpunkte definiert werden. Um die Aufgabenstellung zu erfüllen müssen Messpunkte auf zwei aktive Bauelemente gesetzt werden und ein Messpunkt zwischen diesen Pixeln.  Mit diesen Messwerten kann nun in einem separaten Parameter die Differenz von Pixeltemperatur zu Pixelzwischenraumtemperatur gebildet werden. dieser wird in einer späteren Optimierung benötigt. 
 	Im Zuge dieser Messpunktdefinition soll mittig zwischen den Pixeln ein Messpunkt definiert sein. Um diese Anforderung zu entsprechen wurde wie folgt vorgegangen:
