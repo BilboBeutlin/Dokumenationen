@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.16)  17 JAN 2015 01:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.16)  17 JAN 2015 17:38
 entering extended mode
 **dokument.tex
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\dokument.tex"
@@ -1979,7 +1979,13 @@ Package pdftex.def Info: bilder/WiderstandsMatrix.png used on input line 65.
 .png (PNG copy)> <D:/C# Projekte/Reposetory_Files/Dokumenationen/FEM/bilder/Wid
 erstandsMatrix.png (PNG copy)>]
 Kapitel 3.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 75.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 75.
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 []|[]
  []
@@ -1993,6 +1999,11 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ]
+Underfull \hbox (badness 1033) in paragraph at lines 110--110
+[]|\T1/lmr/m/n/12 (+20) Strahlung auf Nach-bar-flä-
+ []
+
+[8]) [9]
 No file dokument.bbl.
 Package tocbasic Info: character protrusion at lof deactivated on input line 86
 .
@@ -2049,7 +2060,7 @@ ux") ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/grund.aux"))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 110.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
 Package rerunfilecheck Info: File `dokument.out' has not changed.
-(rerunfilecheck)             Checksum: DFE5357DE5EA2253E110CB94FAB2FA97;1174.
+(rerunfilecheck)             Checksum: 34D6822BC3EA737F3D624D8092719D61;1174.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2057,24 +2068,30 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
  ) 
 Here is how much of TeX's memory you used:
- 45741 strings out of 493921
- 1001363 string characters out of 3144873
- 1250073 words of memory out of 3000000
- 48095 multiletter control sequences out of 15000+200000
- 66676 words of font info for 93 fonts, out of 3000000 for 9000
+ 45775 strings out of 493921
+ 1001913 string characters out of 3144873
+ 1250074 words of memory out of 3000000
+ 48117 multiletter control sequences out of 15000+200000
+ 69964 words of font info for 97 fonts, out of 3000000 for 9000
  842 hyphenation exceptions out of 8191
- 78i,12n,114p,10457b,816s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
-public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lm
-ro12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on dokument.pdf (12 pages, 917072 bytes).
+ 78i,13n,114p,10457b,819s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)/MiKT
+eX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x86)/MiKTeX 2.9/font
+s/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx
+12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/lm/lmro12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmssbx1
+0.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
+Output written on dokument.pdf (14 pages, 977967 bytes).
 PDF statistics:
- 275 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 24768 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
+ 25280 words of extra memory for PDF output out of 29859 (max. 10000000)
 

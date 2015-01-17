@@ -69,9 +69,49 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 	\end{center}
 	Zu erkennen ist, dass sich die beiden Geometrien hauptsächlich durch die Bauteilhöhe unterscheiden. Die Matrizen und abstände zwischen den Bauteilen ähneln sich.
 \chapter{Thermisch stationäre Simulation}
-	...
-	Vorbereitung
-	...
+	Nachdem Die Geometrie definiert ist (Siehe Abschnitt  ) müssen verschiedene Messpunkte definiert werden. Um die Aufgabenstellung zu erfüllen müssen Messpunkte auf zwei aktive Bauelemente gesetzt werden und ein Messpunkt zwischen diesen Pixeln.  Mit diesen Messwerten kann nun in einem separaten Parameter die Differenz von Pixeltemperatur zu Pixelzwischenraumtemperatur gebildet werden. dieser wird in einer späteren Optimierung benötigt. 
+	Im Zuge dieser Messpunktdefinition soll mittig zwischen den Pixeln ein Messpunkt definiert sein. Um diese Anforderung zu entsprechen wurde wie folgt vorgegangen:
+	\begin{itemize}
+		\item Erstellung eines Koordinatensystems zwischen den Auflageflächen zweier Bauteile
+		\item Erstellen einer Skizze eines Quadrates Symmetrisch um den Ursprung des geschaffenen Koordinatensystems
+		\item Extrudieren der Skizze so, dass eine kleine Schicht der Platine entfernt wird (0,1 mm)
+	\end{itemize}
+	durch dieses vorgehen wird eine kleine Fläche geschaffen, die auch bei Änderung des Bauteilabstandes Mittig der beiden Bauelemente definiert ist. Daraufhin kann auf diese geschaffene Fläche ein Messpunkt gesetzt werden. Der erzeugte ausschnitt ist dabei so gering definiert, dass es die thermischen Eigenschaften der Leiterplatte nur gering beeinflusst.
+	Nachteil dieser Lösung ist es, dass  das Netz nicht mehr gleichmäßig definiert werden kann.
+	
+	Weiterführend wurde folgende Parameter gesetzt um eine Optimierung durchführen zu können.
+	\begin{itemize}
+		\item Maximale Temperatur
+		\item maximale Temperatur äußerer Pixel der oberen Reihe
+		\item maximale Temperatur mittlerer Pixel der oberen Reihe
+		\item maximale Temperatur zwischen den genannten Pixeln
+		\item maximale Temperatur passiver Pixel
+		\item Abstand der Pixelmittelpunkte
+		\item wert der internen Wärmeerzeugung
+	\end{itemize}
+	
+	Folgend Werden die Vernetzung und die Definition der Aktiven Pixel Gezeigt:
+	
+	\begin{LARGE}
+		TODO: Bild Netz
+		
+		TODO: Bild Interne Wärmeerzeugung	
+	\end{LARGE}
+	
+	Des weiteren wurden Folgende thermischen Senken bzw. Beziehungen definiert:
+	
+	\begin{table}[bh]
+		\centering
+		\caption{Eigenschaftsdefinition der Flächen}
+		\begin{tabular}{p{5cm}  p{5cm}  c } 
+			\rowcolor[gray]{.8} thermische Eigenschaft & Anwendung auf:& Wert\\
+			Konvektion& alle Flächen & 8 $ \dfrac{W}{m^{2}} $	\\	
+			\rowcolor[gray]{.8}Strahlung auf umgebung & Oberfläche der Platine & ---\\
+			Strahlung auf Nachbarflächen & Oberflächen der Bauelemente '(Pixel) & ---
+		\end{tabular}
+		\label{tab:Eigenschaftsdefinition_der_Flächen}
+	\end{table}
+	
 	\section{Simulation der Transistor Matrix}
 	...
 		\subsection{Optimierung}
