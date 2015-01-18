@@ -1,4 +1,16 @@
 \chapter{Transienten Simulation}
 Ziel dieser Simulation soll es sein, das zeitliche Temperaturverhalten innerhalb der Matrix zu ermitteln. Die Informationen zu diesem verhalten sind notwendig um Mausbewegungen zu simulieren. folgende Unterkapitel sollen die Ergebnisse Darstellen.
 	\section{Widerstandssimulation}
-	Um einen ersten Eindruck zu erhalten, wurden ein 3 x 3 Pixel Rechteck eine Minute lang mit 50 mW erwärmt und weitere 20 s ohne Leistungserzeugung simuliert. 
+	Um einen ersten Eindruck zu erhalten, wurden ein 3 x 3 Pixel Rechteck 30 s lang mit 50 mW erwärmt und weitere 40 s ohne Leistungserzeugung simuliert. dadurch ergab sich folgender Temperaturverlauf:
+	
+	\begin{center}
+		\begin{minipage}[!ht]{0.6\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/Aufwaermeverlauf}
+			\caption{Aufwärm- und Abkühlezyklus}
+			\label{fig:Aufwaermeverlauf}
+		\end{minipage}
+	\end{center}	
+	Zu beobachten ist, dass erst nach 30 Sekunden ein statisches verhalten erkennbar ist. somit kann bei einer Belastungszeit von einer Sekunde kein Maximalwert erreicht werden. um das dynamische verhalten zu verbessern wird die Bewegungssimulation mit 150 mW durchgeführt.
+	
+	Um nun die Bewegungseinfluss zu simulieren wurden vier zusammenhängende Pixel, über die Matrix wandernd angesteuert, dabei wurden die Pixel mit 1s je Pixelfortschritt angesteuert.
