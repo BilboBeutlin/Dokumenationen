@@ -6,7 +6,7 @@
 \contentsline {chapter}{\numberline {2}Anordnung der Transistoren und Widerst\"ande}{3}{chapter.10}
 \contentsline {section}{\numberline {2.1}Transistoranordnung}{3}{section.11}
 \contentsline {section}{\numberline {2.2}Dimensionierung der Widerst\"ande}{4}{section.14}
-\contentsline {section}{\numberline {2.3}Bildung des Zu simulierenden Modells}{5}{section.17}
+\contentsline {section}{\numberline {2.3}Bildung des zu simulierenden Modells}{5}{section.17}
 \contentsline {chapter}{\numberline {3}Thermisch station\"are Simulation}{7}{chapter.20}
 \contentsline {section}{\numberline {3.1}Simulation der Transistor Matrix}{9}{section.24}
 \contentsline {subsection}{\numberline {3.1.1}Optimierung}{9}{subsection.25}
