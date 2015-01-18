@@ -1,6 +1,30 @@
 	\section{Simulation der Widerstandsmatrix}
-	...
+	Ebenfalls wurden die drei Leistungsstufen mit den SMD-Widerständen realisiert. Dabei ist die Aufgrund der geringeren Größe eine höhere leistungsgleiche realisiert werden. Die Simulation der Drei Leistungen mit einem Ausgangsabstand von 2 mm ergab folgende Temperaturen:
+	\begin{table}[bh]
+		\centering
+		\caption{Statische Ergebnisse der Widerstände}
+		\begin{tabular}{p{3cm} l p{2.5cm} p{2.5cm} p{2.5cm} } 
+			\rowcolor[gray]{.8} Bauteilleistung & Leistungsdichte & Minimale Temperatur aktiver Pixel & Maximale Temperatur aktiver Pixel	& Temperatur passiver Pixel \\
+								50 mW	& $1,833 * 10^7 \dfrac{W}{mm^3 }$ & blubb & blubb & blubb	\\	
+			\rowcolor[gray]{.8}	100 mW	& $3,666 * 10^7 \dfrac{W}{mm^3 }$ & blubb & blubb & blubb	\\
+								150 mW	& $5,499 * 10^7 \dfrac{W}{mm^3 }$ & blubb & blubb & blubb	
+		\end{tabular}
+		\label{tab:Statische_Ergebnisse_Widerstände}
+	\end{table}
 		\subsection{Optimierung}
-		...
+		Ziel einer Optimierung ist es nun, die Temperaturdifferenz von zwei Pixeln und dem Bereich zwischen diesen Pixeln so gering wie möglich zu halten. Jedoch ist dabei der Mindestabstand zwischen den Pixeln zu betrachten. Durchgeführt wurde die Optimierung mit 124 mW Bauteilleistung. Grund dafür ist, dass in einer vorherigen Optimierung versucht wurde die typische Temperatur einer Maus zu erreichen. Ergebnis war, das diese Temperatur mit 124 mW annähernd erreicht wurde. Der Abstand Zwischen den Pixeln hatte bei der durchgeführten Optimierung nur geringen Einfluss auf die Pixeltemperaturen. Folgendes Ergebnisbild entstand mit den Optimalen Ergebnissen.
+		
+		\begin{center}
+			\begin{minipage}[!ht]{0.6\textwidth}
+				\captionsetup{type=figure}
+				\includegraphics[width=1\linewidth]{bilder/Widerstand_124mW_laut_opti_3,94}
+				\caption{Optimierungsergebnis Widerstandsmatrix}
+				\label{fig:Optimierungsergebniss_Widerstandsmatrix}
+			\end{minipage}
+		\end{center}
+		
+		Da der Mindestabstand (Lückengröße) in Y Richtung 1,6 mm beträgt, Ist dies der Startwert. Laut Optimierung ergibt sich bei einer Lückengröße von 2,38 mm eine minimale Temperaturdifferenz. Jedoch wie die Abbildung \ref{fig:Optimierungsergebniss_Widerstandsmatrix} zeigt, Ist auch bei diesem wert eine Relativ Große Temperaturdifferenz zu erkennen. Um Die Differenz zu veranschaulichen wurden die Farben mit 0,1 °C bezüglich der Maximaltemperatur abgestuft.
+		
+		Die Simulationsergebnisse können jedoch von der Realität abweichen, da keine Luftbewegung in der Simulation berücksichtigt wird. Weiter beeinflussen andere Faktoren wie Umgebungstemperatur und Luftfeuchtigkeit das Ergebnis.
 		\subsection{Aufgabe mit Rand}
 		...

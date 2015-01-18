@@ -8,10 +8,12 @@
 \BOOKMARK [1][-]{section.17}{Bildung des Zu simulierenden Modells}{chapter.10}% 8
 \BOOKMARK [0][-]{chapter.20}{Thermisch station\344re Simulation}{}% 9
 \BOOKMARK [1][-]{section.24}{Simulation der Widerstandsmatrix}{chapter.20}% 10
-\BOOKMARK [2][-]{subsection.25}{Optimierung}{section.24}% 11
-\BOOKMARK [2][-]{subsection.26}{Aufgabe mit Rand}{section.24}% 12
-\BOOKMARK [1][-]{section.27}{Simulation der Transistor Matrix}{chapter.20}% 13
-\BOOKMARK [2][-]{subsection.28}{Optimierung}{section.27}% 14
-\BOOKMARK [2][-]{subsection.29}{Aufgabe mit Rand}{section.27}% 15
-\BOOKMARK [0][-]{chapter*.30}{Abbildungsverzeichnis}{}% 16
-\BOOKMARK [0][-]{chapter*.31}{Tabellenverzeichnis}{}% 17
+\BOOKMARK [2][-]{subsection.26}{Optimierung}{section.24}% 11
+\BOOKMARK [2][-]{subsection.28}{Aufgabe mit Rand}{section.24}% 12
+\BOOKMARK [1][-]{section.29}{Simulation der Transistor Matrix}{chapter.20}% 13
+\BOOKMARK [2][-]{subsection.30}{Optimierung}{section.29}% 14
+\BOOKMARK [2][-]{subsection.31}{Aufgabe mit Rand}{section.29}% 15
+\BOOKMARK [0][-]{chapter.32}{Transienten Simulation}{}% 16
+\BOOKMARK [1][-]{section.33}{Widerstandssimulation}{chapter.32}% 17
+\BOOKMARK [0][-]{chapter*.34}{Abbildungsverzeichnis}{}% 18
+\BOOKMARK [0][-]{chapter*.35}{Tabellenverzeichnis}{}% 19
