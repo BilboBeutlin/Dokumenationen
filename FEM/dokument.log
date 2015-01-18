@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.16)  18 JAN 2015 22:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.16)  18 JAN 2015 23:50
 entering extended mode
 **dokument.tex
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\dokument.tex"
@@ -1613,7 +1613,9 @@ LaTeX Warning: Label `tab:Abst\"ande SOT23' multiply defined.
 ) ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/widerstand.aux")
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/transistor.aux")
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/widerstand_transie
-nt.aux"))
+nt.aux")
+("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/zusammenfassungFEM
+.aux"))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
 LaTeX Font Info:    ... okay on input line 19.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
@@ -1812,7 +1814,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/titel.tex"
-<Bilder/EAHJena.png, id=82, 524.4393pt x 112.9821pt>
+<Bilder/EAHJena.png, id=90, 524.4393pt x 112.9821pt>
 File: Bilder/EAHJena.png Graphic file (type png)
  <use Bilder/EAHJena.png>
 Package pdftex.def Info: Bilder/EAHJena.png used on input line 14.
@@ -1886,14 +1888,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 
-] <bilder/sot23footprint.pdf, id=132, 372.199pt x 237.31854pt>
+] <bilder/sot23footprint.pdf, id=142, 372.199pt x 237.31854pt>
 File: bilder/sot23footprint.pdf Graphic file (type pdf)
 
 <use bilder/sot23footprint.pdf>
 Package pdftex.def Info: bilder/sot23footprint.pdf used on input line 27.
 (pdftex.def)             Requested size: 341.43437pt x 217.7056pt.
 
-<bilder/smd1206.pdf, id=133, 1493.58pt x 1313.70805pt>
+<bilder/smd1206.pdf, id=143, 1493.58pt x 1313.70805pt>
 File: bilder/smd1206.pdf Graphic file (type pdf)
 
 <use bilder/smd1206.pdf>
@@ -1924,7 +1926,7 @@ en/FEM/bilder/smd1206.pdf): PDF inclusion: multiple pdfs with page group includ
 ed in a single page
 >] ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/grund.tex"
 Kapitel 2.
-<bilder/Abmessungen_SOT23.pdf, id=180, 845.1575pt x 597.23125pt>
+<bilder/Abmessungen_SOT23.pdf, id=190, 845.1575pt x 597.23125pt>
 File: bilder/Abmessungen_SOT23.pdf Graphic file (type pdf)
 
 <use bilder/Abmessungen_SOT23.pdf>
@@ -1952,7 +1954,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
  <D:/C# Projekte/Reposetory_Files/Dokumenationen/FEM/bilder/Abmessungen_SOT23.p
 df, page is rotated 90 degrees>]
-<bilder/Abnessungen_SMD_1206.png, id=191, 517.4532pt x 362.19315pt>
+<bilder/Abnessungen_SMD_1206.png, id=201, 517.4532pt x 362.19315pt>
 File: bilder/Abnessungen_SMD_1206.png Graphic file (type png)
 
 <use bilder/Abnessungen_SMD_1206.png>
@@ -1965,14 +1967,14 @@ Overfull \hbox (5.114pt too wide) in paragraph at lines 42--48
  [][] 
  []
 
-<bilder/TransistorMatrix.png, id=200, 582.175pt x 468.75125pt>
+<bilder/TransistorMatrix.png, id=210, 582.175pt x 468.75125pt>
 File: bilder/TransistorMatrix.png Graphic file (type png)
 
 <use bilder/TransistorMatrix.png>
 Package pdftex.def Info: bilder/TransistorMatrix.png used on input line 56.
 (pdftex.def)             Requested size: 256.07741pt x 206.1868pt.
  [5]
-<bilder/WiderstandsMatrix.png, id=206, 582.175pt x 468.75125pt>
+<bilder/WiderstandsMatrix.png, id=216, 582.175pt x 468.75125pt>
 File: bilder/WiderstandsMatrix.png Graphic file (type png)
 
 <use bilder/WiderstandsMatrix.png>
@@ -2001,14 +2003,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [7
 
 
-] <bilder/Vernetzung.png, id=218, 582.175pt x 468.75125pt>
+] <bilder/Vernetzung.png, id=228, 582.175pt x 468.75125pt>
 File: bilder/Vernetzung.png Graphic file (type png)
 
 <use bilder/Vernetzung.png>
 Package pdftex.def Info: bilder/Vernetzung.png used on input line 99.
 (pdftex.def)             Requested size: 256.07741pt x 206.1868pt.
 
-<bilder/InterneWaerme.png, id=219, 582.175pt x 468.75125pt>
+<bilder/InterneWaerme.png, id=229, 582.175pt x 468.75125pt>
 File: bilder/InterneWaerme.png Graphic file (type png)
 
 <use bilder/InterneWaerme.png>
@@ -2023,14 +2025,14 @@ Underfull \hbox (badness 1033) in paragraph at lines 121--121
 NG copy)> <D:/C# Projekte/Reposetory_Files/Dokumenationen/FEM/bilder/InterneWae
 rme.png (PNG copy)>]) [9]
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/widerstand.tex"
-<bilder/Unbenannt.png, id=233, 953.06062pt x 167.87718pt>
+<bilder/Unbenannt.png, id=243, 953.06062pt x 167.87718pt>
 File: bilder/Unbenannt.png Graphic file (type png)
 
 <use bilder/Unbenannt.png>
 Package pdftex.def Info: bilder/Unbenannt.png used on input line 7.
 (pdftex.def)             Requested size: 426.79135pt x 75.17772pt.
 
-<bilder/Widerstand_124mW_laut_opti_3,94.png, id=234, 576.65437pt x 367.3725pt>
+<bilder/Widerstand_124mW_laut_opti_3,94.png, id=244, 576.65437pt x 367.3725pt>
 File: bilder/Widerstand_124mW_laut_opti_3,94.png Graphic file (type png)
 
 <use bilder/Widerstand_124mW_laut_opti_3,94.png>
@@ -2047,18 +2049,14 @@ Underfull \hbox (badness 3965) in paragraph at lines 20--20
 
  <D:/C# Projekte/Reposetory_Files/Dokumenationen/FEM/bilder/Unbenannt.png> <D:/
 C# Projekte/Reposetory_Files/Dokumenationen/FEM/bilder/Widerstand_124mW_laut_op
-ti_3,94.png>] <bilder/Vorgabe.png, id=245, 578.91281pt x 363.60844pt>
+ti_3,94.png>] <bilder/Vorgabe.png, id=255, 578.91281pt x 363.60844pt>
 File: bilder/Vorgabe.png Graphic file (type png)
 
 <use bilder/Vorgabe.png>
 Package pdftex.def Info: bilder/Vorgabe.png used on input line 34.
 (pdftex.def)             Requested size: 341.43437pt x 214.44943pt.
 
-
-LaTeX Warning: Reference `fig:Ergebnis_Ring' on page 11 undefined on input line
- 40.
-
-<bilder/RingErgebniss.png, id=246, 654.19406pt x 364.36125pt>
+<bilder/RingErgebniss.png, id=257, 654.19406pt x 364.36125pt>
 File: bilder/RingErgebniss.png Graphic file (type png)
 
 <use bilder/RingErgebniss.png>
@@ -2075,7 +2073,7 @@ g>]
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/widerstand_transie
 nt.tex"
 Kapitel 4.
-<bilder/Aufwaermeverlauf.png, id=267, 741.52031pt x 255.20343pt>
+<bilder/Aufwaermeverlauf.png, id=275, 741.52031pt x 255.20343pt>
 File: bilder/Aufwaermeverlauf.png Graphic file (type png)
 
 <use bilder/Aufwaermeverlauf.png>
@@ -2098,10 +2096,77 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
  <D:/C# Projekte/Reposetory_Files/Dokumenationen/FEM/bilder/Aufwaermeverlauf.pn
 g>]
-No file dokument.bbl.
+("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/ZusammenfassungFEM
+.tex"
+Kapitel 5.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]|[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]|[]
+ []
+
+[15
+
+
+
+
+] ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\dokument.bbl"
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/12'.
+(microtype)             Ignoring protrusion settings for this character.
+
+Underfull \hbox (badness 1325) in paragraph at lines 33--39
+[]\T1/lmr/m/sc/12 (+20) Atmel\T1/lmr/m/n/12 (+20) , Cor-po-ra-ti-on:  \T1/lmr/m
+/it/12 (+20) 8-bit At-mel Mi-cro-con-trol-ler with 16K/32K/64K
+ []
+
+
+Underfull \hbox (badness 1478) in paragraph at lines 33--39
+\T1/lmr/m/it/12 (+20) By-tes In-System Pro-gram-ma-ble Flash\T1/lmr/m/n/12 (+20
+) .  [][]$\T1/lmtt/m/n/12 http : / / www . atmel . com / images /$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--39
+$\T1/lmtt/m/n/12 atmel-[]8011-[]8-[]bit-[]avr-[]microcontroller-[]atmega164p-[]
+324p-[]644p _$
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 65--70
+[]\T1/lmr/m/sc/12 (+20) Elektronik\T1/lmr/m/n/12 (+20) , In-dus-tries:  \T1/lmr
+/m/it/12 (+20) Ve-wen-dung von Bootsrap-Schaltung\T1/lmr/m/n/12 (+20) .  [][]$\
+T1/lmtt/m/n/12 http :$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--70
+$\T1/lmtt/m/n/12 / / material . htlwien10 . at / wissensspeicher / Bootstrap / 
+Verwendung _ von _$
+ []
+
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]|[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]|[]
+ []
+
+[4
+
+
+
+]
 Package tocbasic Info: character protrusion at lof deactivated on input line 88
 .
-("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\dokument.lof"
+ ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\dokument.lof"
 Overfull \hbox (9.49399pt too wide) in paragraph at lines 3--3
  [][] [][][]\T1/lmr/m/n/12 (-20) Transistor - Re-flow-foot-print SOT23 Ge-häu-s
 es, Quel-le: NXP - PDTC114E 
@@ -2131,8 +2196,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []|[]
  []
 
-[4
-
+[5
 
 
 ]
@@ -2141,7 +2205,7 @@ Package tocbasic Info: character protrusion at lot deactivated on input line 89
  ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\dokument.lot")
 \tf@lot=\write10
 
-[5
+[6
 
 
 ]
@@ -2154,20 +2218,13 @@ ux") ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/grund.aux")
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/widerstand.aux")
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/transistor.aux")
 ("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/widerstand_transie
-nt.aux"))
+nt.aux")
+("D:\C# Projekte\Reposetory_Files\Dokumenationen\FEM\kapitel/ZusammenfassungFEM
+.aux"))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
-
-
-Package rerunfilecheck Warning: File `dokument.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `dokument.out':
-(rerunfilecheck)             Before: B035B4ECBF4DE31DDED7A3BBC3D87379;1264
-(rerunfilecheck)             After:  B383AD0D79D4A79117CC78DD3781D913;1264.
-
-LaTeX Warning: There were undefined references.
+Package rerunfilecheck Info: File `dokument.out' has not changed.
+(rerunfilecheck)             Checksum: 22CF1C2288ED3A91F637A48D2139F67F;1376.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2175,54 +2232,32 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
  ) 
 Here is how much of TeX's memory you used:
- 45878 strings out of 493921
- 1005163 string characters out of 3144873
- 1250074 words of memory out of 3000000
- 48163 multiletter control sequences out of 15000+200000
- 67313 words of font info for 100 fonts, out of 3000000 for 9000
+ 45939 strings out of 493921
+ 1006666 string characters out of 3144873
+ 1251074 words of memory out of 3000000
+ 48186 multiletter control sequences out of 15000+200000
+ 75472 words of font info for 112 fonts, out of 3000000 for 9000
  842 hyphenation exceptions out of 8191
- 78i,13n,114p,10457b,820s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{figure.caption.34} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter*.36} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter*.35} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.33} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.32} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.31} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.30} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.29} has been referenced but does not exist,
- replaced by a fixed one
-
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/
-enc/dvips/lm/lm-mathit.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12
-.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/lm/lmro12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
-lm/lmssbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10
-.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Pro
-gram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on dokument.pdf (19 pages, 1125447 bytes).
+ 78i,13n,114p,10457b,818s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/
+MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)/MiKTeX 2.9/font
+s/enc/dvips/lm/lm-mathit.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx
+12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/lm/lmri12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmro1
+2.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/lm/lmtt12.pfb>
+Output written on dokument.pdf (21 pages, 1189872 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 66 named destinations out of 1000 (max. 500000)
- 24811 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 414 PDF objects out of 1000 (max. 8388607)
+ 72 named destinations out of 1000 (max. 500000)
+ 28923 words of extra memory for PDF output out of 29859 (max. 10000000)
 

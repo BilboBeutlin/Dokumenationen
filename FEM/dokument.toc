@@ -16,5 +16,7 @@
 \contentsline {subsection}{\numberline {3.2.2}Aufgabe mit Rand}{13}{subsection.33}
 \contentsline {chapter}{\numberline {4}Transienten Simulation}{14}{chapter.34}
 \contentsline {section}{\numberline {4.1}Widerstandssimulation}{14}{section.35}
-\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{IV}{chapter*.37}
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{V}{chapter*.38}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{15}{chapter.37}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{IV}{chapter*.38}
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{V}{chapter*.39}
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{VI}{chapter*.40}
