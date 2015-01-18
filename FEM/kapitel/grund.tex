@@ -80,6 +80,7 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 	Nachteil dieser Lösung ist es, dass  das Netz nicht mehr gleichmäßig definiert werden kann.
 	
 	Weiterführend wurde folgende Parameter gesetzt um eine Optimierung durchführen zu können.
+	\newpage
 	\begin{itemize}
 		\item Maximale Temperatur
 		\item maximale Temperatur äußerer Pixel der oberen Reihe
@@ -92,12 +93,22 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 	
 	Folgend Werden die Vernetzung und die Definition der Aktiven Pixel Gezeigt:
 	
-	\begin{LARGE}
-		TODO: Bild Netz
-		
-		TODO: Bild Interne Wärmeerzeugung	
-	\end{LARGE}
-	
+	\begin{center}
+		\begin{minipage}[!ht]{0.6\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/Vernetzung}
+			\caption{Vernetzung}
+			\label{fig:Vernetzung}
+		\end{minipage}
+	\end{center}
+	\begin{center}
+		\begin{minipage}[!ht]{0.6\textwidth}
+			\captionsetup{type=figure}
+			\includegraphics[width=1\linewidth]{bilder/InterneWaerme}
+			\caption{Interne Wärmeerzeugung}
+			\label{fig:InterneWaerme}
+		\end{minipage}
+	\end{center}	
 	Des weiteren wurden Folgende thermischen Senken bzw. Beziehungen definiert:
 	
 	\begin{table}[bh]
@@ -106,7 +117,7 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 		\begin{tabular}{p{5cm}  p{5cm}  c } 
 			\rowcolor[gray]{.8} thermische Eigenschaft & Anwendung auf:& Wert\\
 			Konvektion& alle Flächen & 8 $ \dfrac{W}{m^{2}} $	\\	
-			\rowcolor[gray]{.8}Strahlung auf umgebung & Oberfläche der Platine & ---\\
+			\rowcolor[gray]{.8}Strahlung auf Umgebung & Oberfläche der Platine & ---\\
 			Strahlung auf Nachbarflächen & Oberflächen der Bauelemente '(Pixel) & ---
 		\end{tabular}
 		\label{tab:Eigenschaftsdefinition_der_Flächen}
@@ -124,4 +135,5 @@ Das zu simulierende Modell  wurde daraufhin vereinfacht, dass die einzelnen Baue
 		...
 		\subsection{Aufgabe mit Rand}
 		...
+		
 		
