@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.8.26)  17 JAN 2015 21:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.8.26)  17 JAN 2015 23:49
 entering extended mode
 **dokument.tex
 (C:\Users\Henry\Documents\GitHub\Dokumenationen\FEM\dokument.tex
@@ -1825,7 +1825,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 (C:\Users\Henry\Documents\GitHub\Dokumenationen\FEM\kapitel/titel.tex
-<Bilder/EAHJena.png, id=78, 524.4393pt x 112.9821pt>
+<Bilder/EAHJena.png, id=74, 524.4393pt x 112.9821pt>
 File: Bilder/EAHJena.png Graphic file (type png)
  <use Bilder/EAHJena.png>
 Package pdftex.def Info: Bilder/EAHJena.png used on input line 14.
@@ -1899,14 +1899,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 
-] <bilder/sot23footprint.pdf, id=126, 372.199pt x 237.31854pt>
+] <bilder/sot23footprint.pdf, id=122, 372.199pt x 237.31854pt>
 File: bilder/sot23footprint.pdf Graphic file (type pdf)
 
 <use bilder/sot23footprint.pdf>
 Package pdftex.def Info: bilder/sot23footprint.pdf used on input line 27.
 (pdftex.def)             Requested size: 341.43437pt x 217.7056pt.
 
-<bilder/smd1206.pdf, id=127, 1493.58pt x 1313.70805pt>
+<bilder/smd1206.pdf, id=123, 1493.58pt x 1313.70805pt>
 File: bilder/smd1206.pdf Graphic file (type pdf)
 
 <use bilder/smd1206.pdf>
@@ -1936,7 +1936,7 @@ en/FEM/bilder/smd1206.pdf): PDF inclusion: multiple pdfs with page group includ
 ed in a single page
 >] (C:\Users\Henry\Documents\GitHub\Dokumenationen\FEM\kapitel/grund.tex
 Kapitel 2.
-<bilder/Abmessungen_SOT23.pdf, id=174, 845.1575pt x 597.23125pt>
+<bilder/Abmessungen_SOT23.pdf, id=170, 845.1575pt x 597.23125pt>
 File: bilder/Abmessungen_SOT23.pdf Graphic file (type pdf)
 
 <use bilder/Abmessungen_SOT23.pdf>
@@ -1964,7 +1964,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
  <C:/Users/Henry/Documents/GitHub/Dokumenationen/FEM/bilder/Abmessungen_SOT23.p
 df, page is rotated 90 degrees>]
-<bilder/Abnessungen_SMD_1206.png, id=185, 517.4532pt x 362.19315pt>
+<bilder/Abnessungen_SMD_1206.png, id=181, 517.4532pt x 362.19315pt>
 File: bilder/Abnessungen_SMD_1206.png Graphic file (type png)
 
 <use bilder/Abnessungen_SMD_1206.png>
@@ -1977,14 +1977,14 @@ Overfull \hbox (5.114pt too wide) in paragraph at lines 42--48
  [][] 
  []
 
-<bilder/TransistorMatrix.png, id=194, 582.175pt x 468.75125pt>
+<bilder/TransistorMatrix.png, id=190, 582.175pt x 468.75125pt>
 File: bilder/TransistorMatrix.png Graphic file (type png)
 
 <use bilder/TransistorMatrix.png>
 Package pdftex.def Info: bilder/TransistorMatrix.png used on input line 56.
 (pdftex.def)             Requested size: 256.07741pt x 206.1868pt.
  [5]
-<bilder/WiderstandsMatrix.png, id=200, 582.175pt x 468.75125pt>
+<bilder/WiderstandsMatrix.png, id=196, 582.175pt x 468.75125pt>
 File: bilder/WiderstandsMatrix.png Graphic file (type png)
 
 <use bilder/WiderstandsMatrix.png>
@@ -2075,7 +2075,7 @@ x) (C:\Users\Henry\Documents\GitHub\Dokumenationen\FEM\kapitel/grund.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 110.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
 Package rerunfilecheck Info: File `dokument.out' has not changed.
-(rerunfilecheck)             Checksum: 34D6822BC3EA737F3D624D8092719D61;1174.
+(rerunfilecheck)             Checksum: 00787C75D097B306AA2FE0C6EDAE84A0;1135.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2083,11 +2083,11 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
  ) 
 Here is how much of TeX's memory you used:
- 45171 strings out of 493921
- 989038 string characters out of 3147282
+ 45167 strings out of 493921
+ 989004 string characters out of 3147282
  1229442 words of memory out of 3000000
- 47524 multiletter control sequences out of 15000+200000
- 69782 words of font info for 95 fonts, out of 3000000 for 9000
+ 47523 multiletter control sequences out of 15000+200000
+ 69691 words of font info for 94 fonts, out of 3000000 for 9000
  842 hyphenation exceptions out of 8191
  78i,13n,114p,10457b,819s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
@@ -2103,9 +2103,9 @@ TeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on dokument.pdf (14 pages, 978024 bytes).
+Output written on dokument.pdf (14 pages, 977448 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
- 25280 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 302 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
+ 25272 words of extra memory for PDF output out of 29859 (max. 10000000)
 
