@@ -1,12 +1,52 @@
 	\section{Simulation der Transistor Matrix}
-	Die Simulation der Transistor Matrix wurde für alle drei Leistungsangaben durchgeführt. Dabei wurde von dem Initialabstand von 2 mm der Transistoren ausgegangen. Die resultierenden Temperaturen liegen bei XXXX 28 - 41 °C XXX.
+	Die Simulation der Transistor Matrix wurde für alle drei Leistungsangaben durchgeführt. Dabei wurde von dem Initial-Abstand von 2 mm der Transistoren ausgegangen. 
+	
+	\begin{table}[bh]
+		\centering
+		\caption{Temperaturen bei 2 mm Abstand}
+		\begin{tabular}{p{2,5cm} l p{2.5cm}} 
+			\rowcolor[gray]{.8} Leistung & Temperatur \\
+			50 mW	& ca. 28,5 °C \\	
+			\rowcolor[gray]{.8}	100 mW	& ca. 34,5 °C 	\\
+			150 mW	& ca. 41,0 °C  	
+		\end{tabular}
+		\label{tab:Statische_Ergebnisse_Transistor}
+	\end{table}
+	
+	Die Normtemperatur einer Maus beträgt 38 °C, aus Tabelle \ref{tab:Statische_Ergebnisse_Transistor} ist  zu erkennen, dass für 50 mW diese Temperatur im Initial-Zustand  nicht erreicht werden kann. Dies gilt ebenfalls für 100 mW. Für 150 mW muss der Abstand vergrößert werden.
 		
 		\subsection{Optimierung}
-		In der Aufgabenstellung wurde festgelegt, dass eine Optimierung hinsichtlich der Abstände zueinander erfolgen soll. In den ersten Durchläufen wurde festgestellt, dass der Abstand geringeren Einfluss auf die Temperaturen hat. Um die Normtemperatur der Maus zu erhalten reichen die 50 mW nicht aus, da 2mm Abstand zu groß ist, ebenso wird mit 100 mW und 150 mW die Normtemepratur nicht erreicht. Ein Optimierung hinsichtlich Abstand für 100 mW und 150 mW erzeugte Werte die in der Realität nicht möglich sind. Heißt genaues Ätzen und genaues Platzieren ist nicht möglich. Ebenso sind die Transistoren technologisch nicht gleich.
-		Deshalb ist es einfacher sich auf einen Abstand zu einigen und die Leistung entsprechend zu optimieren. 
+		In der Aufgabenstellung wurde festgelegt, dass eine Optimierung hinsichtlich der Abstände zueinander erfolgen soll. Es wurde eine Optimierung durchgeführt, das aus den acht angesteuerten Transistoren ein Temperaturbereich entsteht der einen geringen Signifikanten Temperaturunterschied hat. Dabei wurde der Abstand zu den Pixeln, als auch auf die Leistung hin optimiert.
+		\begin{center}
+			\begin{minipage}[!ht]{0.48\textwidth}
+				\captionsetup{type=figure}
+				\includegraphics[width=1\linewidth]{bilder/Waermeverteilung_150mW_Transistor_Ring_innen_Kantik}
+				\caption{Transistormatrix, Simulation des inneren Vierecks mit \\126 mW;\\ Max/Min Temperatur:\\ 38,366 °C / 36,941 °C}
+				\label{fig:Transistor_Ringen_aussen_innen}
+			\end{minipage}
+			\begin{minipage}[!ht]{0.48\textwidth}
+				\captionsetup{type=figure}
+				\includegraphics[width=1\linewidth]{bilder/Waermeverteilung_150mW_Transistor_grosser_Punkt_Kantik}
+				\caption{Transistormatrix, Simulation der sechs inneren Pixel 126 mW;\\ Max/Min Temperatur:\\ 40,512 °C/38,766 °C}
+				\label{fig:Transistor_Ringen_aussen}
+			\end{minipage}
+		\end{center}
 		
 		\subsection{Aufgabe mit Rand}
-		...
+		\begin{center}
+			\begin{minipage}[!ht]{0.48\textwidth}
+				\captionsetup{type=figure}
+				\includegraphics[width=1\linewidth]{bilder/Waermeverteilung_150mW_Transistor_Ring_aussen_Weich}
+				\caption{Transistormatrix, Simulation des äußeren Vierecks mit 150 mW;\\Max/Min Temperatur:\\ 66,718 °C/55,460 °C}
+				\label{fig:Transistor_Ringen_aussen}
+			\end{minipage}
+			\begin{minipage}[!ht]{0.48\textwidth}
+				\captionsetup{type=figure}
+				\includegraphics[width=1\linewidth]{bilder/Waermeverteilung_150mW_Transistor_Ring_aussen_innen_Weich}
+				\caption{Transistormatrix, Simulation des äußeren und inneren Vierecks mit 150 mW; \\ Max/Min Temperatur:\\ 80,647 °C/78,706 °C}
+				\label{fig:Transistor_Ringen_aussen_innen}
+			\end{minipage}
+		\end{center}
 
 		
 		
